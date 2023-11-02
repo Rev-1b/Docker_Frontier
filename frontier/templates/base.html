@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'img/Titanfan2-logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    {% block css %}{% endblock %}
+    <title>{{ title }}</title>
+</head>
+
+<body style="background-color: rgb(50, 50, 50);">
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark p-md-3 transparent-nav">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/Titanfan2-logo.png' %}" alt="Logo" width="30" height="26"
+                 class="d-inline-block align-text-top">
+            <span class="ps-1">Titan Fun 2</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="navbar-nav">
+                <a class="nav-link" aria-current="page" href="{% url 'titans' %}">Titans</a>
+                <a class="nav-link" href="#">Pilots</a>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+{% block content %}{% endblock %}
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% block additional_scripts %}{% endblock %}
+
+</body>
+</html>

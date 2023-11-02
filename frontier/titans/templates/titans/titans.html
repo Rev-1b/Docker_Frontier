@@ -1,0 +1,403 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/titans.css' %}">
+{% endblock %}
+{% block content %}
+	<section>
+
+    <!-- Offcanvas (side navigation) -->
+
+    <button class="btn menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling">
+        <i class="icon-chart-line icon"></i>
+    </button>
+
+    <div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
+         tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
+                <nav class="nav nav-pills nav-obs flex-column">
+                    <a class="nav-link obs-link" href="#info">Общие сведения</a>
+                    <a class="nav-link obs-link" href="#dropout">Высадка титанов</a>
+                    <a class="nav-link obs-link" href="#change">Переломный момент</a>
+                    <a class="nav-link obs-link" href="#atlas">Атлас:</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#ion">Ион</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#ton">Тон</a>
+                    <a class="nav-link obs-link" href="#ogre">Огр:</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#scorch">Скорч</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#legion">Легион</a>
+                    <a class="nav-link obs-link" href="#strayder">Страйдер:</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#ronin">Ронин</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#northstar">Нордстар</a>
+                    <a class="nav-link obs-link" href="#unusial">Особая категория:</a>
+                    <a class="nav-link obs-link ms-3 my-1" href="#monarch">Монарх</a>
+                </nav>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container content text-shadow">
+        <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h2 id="info">Общие сведения</h2>
+                    <p>
+                        Титаны —антропоморфные пилотируемые роботы, являющиеся результатом развития технологий
+                        экзоскелета, предназначенные как для гражданского, так и для военного применения. Титаны
+                        являются символом одноименной серии игр Titanfall и Titanfall 2.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Во вселенной Titanfall титаны используются для выполнения широкого спектра различных
+                        задач. Невооруженные модели используются в различных целях, например: в сельском
+                        хозяйстве, логистике, спасательных операциях (в том числе космических),
+                        транспортировке
+                        грузов и строительстве, а также в экспедициях на неизведанные экзопланеты.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/civil-titans.jpg" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <p>
+                        Однако, несмотря на мирное применение, основная роль титанов в мире Фронтира - это военные
+                        действия. На поле боя титаны выступают в роли сверхмобильных тяжело вооруженных боевых
+                        единиц. Можно с уверенностью утверждать, что титаны являются продвинутым аналогом
+                        современных танков.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h2 id="dropout">Высадка Титанов</h2>
+                    <p>
+                        На поле боя титаны чаще всего попадают путем “Высадки Титанов”. Различают два типа высадки –
+                        орбитальную и атмосферную.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-12">
+                    <p>
+                        При атмосферной высадке корабль-носитель зависает на безопасной высоте над полем боя, обычно
+                        это 100-200 метров. Титаны десантируются из ангара корабля носителя без десантной капсулы.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <iframe width="auto" height="auto"
+                            src="https://www.youtube.com/embed/Sn50EDiLVAk?si=_Ph-bVTpKGB8Y_Bb"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                    </iframe>
+                    <h6>Пример атмосферной высадки</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-12">
+                    <p>
+                        При орбитальной высадке корабль-носитель находится на орбите. Титаны десантируются в
+                        специальных капсулах, развивающих гиперзвуковую скорость. Этот метод развертывания
+                        чрезвычайно точен и позволяет Титану прибыть на землю менее чем за минуту. На уровне 50-100
+                        метров капсула раскрывается, у титана включаются тормозные двигатели, и он, значительно
+                        снизив скорость, касается земли.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <iframe width="auto" height="auto"
+                            src="https://www.youtube.com/embed/KDDdLxTT8aI?si=UlC9JgugvvyzjDnU"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                    </iframe>
+                    <h6>Пример орбитальной высадки</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <p>
+                        Также существует два подвида орбитальной высадки: стандартная высадка и варп прыжок.
+                        При стандартной высадке по приземлении титана на 12 секунд защищает стационарный
+                        энергетический щит-купол
+                        При варп-прыжке энергетический щит недоступен, за счет чего скорость высадки повышается
+                        практически вдвое.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h2 id="change">Переломный момент</h2>
+                    <p>
+                        Битва за Деметру является переломным моментом в титаностроении. До этой битвы у Титанов было
+                        настраиваемое снаряжение и гибкий дизайн, основанный на предпочтениях пилота. Существовало
+                        три основных типа корпусов титана: «Атлас», «Огр» и «Страйдер». Корпуса различались по
+                        степени бронированности, живучести и маневренности. Пилоты имели возможность гибко
+                        настраивать конфигурацию своих боевых машин.
+                    </p>
+                    <p>
+                        Однако после Сражения за Деметру, из-за разрушенных линий производства Hammond Robotics были
+                        вынуждены пойти по пути стандартизации и унификации. Таким образом появились новые модели
+                        титанов на базе старых корпусов. У титанов нового поколения был заранее определенный набор
+                        вооружения и модификаций, что позволило значительно сократить затраты на производство. К
+                        сожалению, из-за недостатка комплектующих, Титаны нового поколения лишились некоторых
+                        функций предшественников, например, генератора энергетического щита.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col12">
+                    <h2 id="atlas">Атлас</h2>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Атлас – это первая серийная модель титанов. На основе именно этого корпуса впоследствии были
+                        созданы Огр и Страйдер. Однако, возраст этой модели вовсе не указывает на ее бесполезность.
+                        Атлас является своего рода «рабочей лошадкой» вселенной Titalfall. В нем найден идеальный
+                        баланс
+                        между мобильностью, живучестью и огневой мощью. В отличие от своих более молодых коллег,
+                        этот
+                        титан универсален и предназначен для выполнения широкого круга задач.
+                        <br><br>После Битвы за Деметру, на основе шасси Атласа, были разработаны две модели нового
+                        поколения: Ион и Тон
+
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/atlas-new.jpg" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <a href="titan-model.html"><h3 id="ion">Ион</h3></a>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Ион – титан второго поколения, специализирующийся на энергетическом оружии. Вооружен
+                        Винтовкой
+                        Сплиттер, Плечевой лазерной пушкой и Энерголовушками, а для защиты оборудован Вихревым
+                        щитом.
+                        Использует Ядро Лазера.
+                        <br>В связи в высоким энергопотреблением, при управлении этим титаном необходимо следить за
+                        уровнем энергии.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Ion.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="ton">Тон</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Тон – титан второго поколения, специализирующийся на самонаводящемся ракетном вооружении.
+                        Вооружен 40-мм трекер пушкой, Ракетами-следопытами и Сонарным пульсаром. Для защиты
+                        оборудован
+                        Стеной частиц. Использует Ядро Залпа.
+                        <br>Из-за особенностей вооружения предпочитает бой на средне-дальней дистанции.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Tone.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col12">
+                    <h2 id="ogre">Огр</h2>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Огр – титан тяжелого класса, предназначенный для подавления врага. Являясь переосмыслением
+                        Атласа, в сравнении с предком Огр имеет намного более серьезное бронирование, позволяющее
+                        ему
+                        выживать под плотным огнем противника. Однако, в связи с увеличившейся массой, Огр сильно
+                        утратил в маневренности, поэтому он не способен к продолжительным рывкам и бегу.
+                        <br><br>После Битвы за Деметру, на основе шасси Огра были разработаны две модели нового
+                        поколения: Скорч и Легион
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/ogre.jpg" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="scorch">Скорч</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Скорч – титан второго поколения, специализирующийся на нанесении урона огнем. Вооружен
+                        Пусковой
+                        Термитной Установкой Т-203, бочками с горючим газом и установкой для выставления огненной
+                        стены.
+                        В целях защиты Скорч оборудован Тепловым щитом. Использует Ядро Огня.
+                        <br>Скорч – это идеальный титан для использования тактики «выжженой земли».
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Scorch.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="legion">Легион</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Легион – титан второго поколения, использующий тяжелый пулемет роторного типа «Хищник». Все
+                        дополнительное оборудование тем или иным образом модифицирует это оружие. В них входят
+                        «Переключатель режимов», «Мощный выстрел» и «Орудийный Щит». Использует Ядро Смартгана.
+                        <br>Легион по праву считается универсальным титаном, так как помимо укрепленного корпуса, он
+                        способен наносить урон противнику на любых дистанциях.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Legion.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col12">
+                    <h2 id="strayder">Страйдер</h2>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Страйдер – титан легкого класса, быстро перемещающийся по полю боя. Он является сильно
+                        облегченной версией Атласа, за счет чего может развивать огромную сккорость и способен
+                        совершить
+                        несколько рывков подряд. Однако, он намного менее устойчив к повреждениям, поэтому основой
+                        выживания у этого титана является уклонение. Нередко из-за сверхмобильности выступает в роли
+                        титана дальнего боя.
+                        <br><br>После Битвы за Деметру, на основе шасси Страйдера были разработаны две модели нового
+                        поколения: Ронин и Нордстар.
+
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/stryder.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="ronin">Ронин</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Ронин – титан второго поколения, специализирующийся на ближнем бое. Вооружет 4-зарядным
+                        дробовиком, мечом и установкой «Шокирующей волны». Защищается при помощи своего меча,
+                        блокируя вражеские снаряды. Использует Ядро Меча.
+                        <br>Лучше всего Ронин раскрывается в ближнем бою. Он обладает инструментами, чтобы догнать,
+                        обездвижить и уничтожить практически любого врага. Однако, он слабо бронирован, поэтому
+                        нуждается в огневом прикрытии.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Ronin.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="northstar">Нордстар</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Нордстар – титан второго поколения, специализирующийся исключительно на дальнем бое.
+                        Вооружен Рельсотроном, Пусковым модулем Кассетных ракет и модулем полета. Для контроля
+                        дистанции несет 2 замедляющие ловушки. Использует Ядро полета.
+                        <br>Титан, зависящий от команды. Наносит огромный урон на дальней дистанции, но очень уязвим
+                        в ближнем бою.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Northstar.webp" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col12">
+                    <h2 id="unusial">Особая категория</h2>
+                    <p>
+                        Титаны особой категории являются не модификациями существующих ранее корпусов, а
+                        самостоятельными разработками.
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                <h3 id="monarch">Монарх</h3>
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <p>
+                        Монарх – первый и единственный титан поколения 2.5. Он создан на основе шасси «Авангард»
+                        ополчения. Монарх способен «эволюционировать» прямо на поле боя. С каждым применением своего
+                        ядра он улучшает эффективность одной из своих подсистем. Вооружен 20-мм пушком XO-16,
+                        установкой перекачки энергии, модулем ускоренной перезарядки и самонаводящимися ракетами.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                    <img src="/static/img/Titans/Monarch.png" alt="bruh" class="img-fluid white-shadow">
+                    <h6>Some text</h6>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+    <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <h4>
+
+                </h4>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block additional_scripts %}
+	<script>
+    var nav = document.querySelector('nav');
+    window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 100) {
+            nav.classList.add('transparent-nav');
+        } else {
+            nav.classList.remove('transparent-nav');
+        }
+    });
+</script>
+{% endblock %}
