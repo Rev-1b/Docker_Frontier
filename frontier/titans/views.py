@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from Frontier.common.views import TitleMixin
 
@@ -13,5 +12,7 @@ class TitansView(TitleMixin, TemplateView):
     title = 'TF2: Titans'
 
 
-def view_function(request):
-    return HttpResponse('Some response')
+class IonView(TitleMixin, TemplateView):
+    template_name = 'titans/titan-model.html'
+    title = 'TF2: Ion'
+
