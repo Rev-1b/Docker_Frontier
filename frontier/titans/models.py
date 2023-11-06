@@ -2,10 +2,25 @@ from django.db import models
 
 
 class MainPageModel(models.Model):
-    """
-    Probably will be implemented later
-    """
     pass
+
+
+class ChapterModel(models.Model):
+    chapter_name = models.CharField(max_length=255, blank=False)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    upper_text = models.TextField()
+    lower_text = models.TextField()
+    master_page = models.ForeignKey(MainPageModel, null=True, on_delete=models.SET_NULL, related_name='chapters')
+
+
+class ContentBlockWithImageVideoModel(models.Model):
+    block_name = models.CharField(max_length=255, blank=False)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    content = models.TextField()
+    image = models.ImageField(upload_to='additional/', null=True, blank=True)
+    video_link = models.CharField(max_length=255, blank=True)
+    image_or_video_descr = models.CharField(max_length=255)
+    master_chapter = models.ForeignKey(ChapterModel, null=True, on_delete=models.SET_NULL, related_name='content')
 
 
 class AbstractTitanModel(models.Model):
@@ -22,20 +37,22 @@ class AbstractTitanModel(models.Model):
 
 
 class FirstGenTitanModel(AbstractTitanModel):
-    pass
+    master_page = models.ForeignKey(MainPageModel, null=True, on_delete=models.SET_NULL, related_name='old_titans')
 
 
 class SecondGenTitanModel(AbstractTitanModel):
     full_descr = models.TextField(blank=True)
     video_link = models.CharField(max_length=255, blank=False)
-    ancestor_model = models.ForeignKey(FirstGenTitanModel, null=True, on_delete=models.SET_NULL)
+    ancestor_model = models.ForeignKey(FirstGenTitanModel, null=True, on_delete=models.SET_NULL,
+                                       related_name='children')
 
 
 class AbstractEquipmentModel(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True)
     equipment_name = models.CharField(max_length=255, null=False)
     descr = models.TextField(blank=False)
-    master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL)
+    master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL,
+                                     related_name='equipment')
 
 
 class TitanWeaponModel(AbstractEquipmentModel):
@@ -47,4 +64,3 @@ class TitanWeaponModel(AbstractEquipmentModel):
 
 class TitanKitModel(AbstractTitanModel):
     pass
-
