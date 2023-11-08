@@ -1,5 +1,6 @@
 from django.db import models
 from Frontier.common.models import NormalStringMixin
+from django.utils.translation import gettext_lazy as _
 
 
 class MainPageModel(NormalStringMixin, models.Model):
@@ -42,8 +43,8 @@ class AbstractTitanModel(NormalStringMixin, models.Model):
     def user_directory_path(instance, filename):
         return "{0}/{1}".format(instance.name, filename)
 
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     name = models.CharField(max_length=255, default='Empty', verbose_name='Имя титана')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     mp_descr = models.TextField(blank=True, verbose_name='Описание на основной странице')
     mp_image = models.ImageField(upload_to=user_directory_path, verbose_name='Фото на основной странице')
 
@@ -72,29 +73,34 @@ class SecondGenTitanModel(AbstractTitanModel):
 
 
 class AbstractEquipmentModel(NormalStringMixin, models.Model):
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     name = models.CharField(max_length=255, default='Empty', verbose_name='Название снаряжения')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     descr = models.TextField(blank=False, verbose_name='Описание снаряжения')
     master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL,
                                      related_name='equipment', verbose_name='Титан-владелец')
 
 
 class TitanWeaponModel(AbstractEquipmentModel):
+    class WeaponType(models.TextChoices):
+        MAIN_WEAPON = "MW", _("Основное оружие")
+        SUB_WEAPON = "SW", _("Дополнительное оружие")
+        TACTICAL_WEAPON = "TW", _("Тактическое оружие")
+        CORE_WEAPON = "CW", _("Ядро")
+
     def user_directory_path(instance, filename):
         return "{0}/{1}".format(instance.master_titan.name, filename)
 
     weapon_image = models.ImageField(upload_to=user_directory_path, verbose_name='Изображение оружия')
+    weapon_type = models.CharField(max_length=2, choices=WeaponType.choices, default=WeaponType.MAIN_WEAPON)
 
     class Meta:
         verbose_name = 'Основное снаряжение титанов'
         verbose_name_plural = 'Основное снаряжение титанов'
 
 
-class TitanKitModel(AbstractTitanModel):
+class TitanKitModel(AbstractEquipmentModel):
     class Meta:
         verbose_name = 'Дополнительный набор титана'
         verbose_name_plural = 'Дополнительные наборы титанов'
 
 
-MY_MODELS = [ContentBlockWithImageVideoModel, FirstGenTitanModel, SecondGenTitanModel,
-             TitanWeaponModel, TitanKitModel]
