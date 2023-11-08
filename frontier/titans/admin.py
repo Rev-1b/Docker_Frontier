@@ -43,15 +43,17 @@ class SecondGenTitanAdmin(admin.ModelAdmin):
 
 @admin.register(TitanWeaponModel)
 class TitanWeaponAdmin(admin.ModelAdmin):
-    list_display = ['name', 'master_titan']
+    list_display = ['name', 'weapon_type', 'master_titan']
+    list_editable = ['weapon_type', 'master_titan']
     search_fields = ['name', 'master_titan__name']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_titan']
+    list_filter = ['master_titan', 'weapon_type']
 
 
 @admin.register(TitanKitModel)
 class TitanKitAdmin(admin.ModelAdmin):
     list_display = ['name', 'master_titan']
+    list_editable = ['master_titan']
     search_fields = ['name', 'master_titan__name']
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ['master_titan']

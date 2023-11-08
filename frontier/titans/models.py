@@ -66,6 +66,7 @@ class SecondGenTitanModel(AbstractTitanModel):
     video_link = models.CharField(max_length=255, blank=False, verbose_name='Ссылка на видео')
     ancestor_model = models.ForeignKey(FirstGenTitanModel, null=True, on_delete=models.SET_NULL,
                                        related_name='children', verbose_name='Модель-предок')
+    strategy = models.TextField(blank=True, verbose_name='Стратегия')
 
     class Meta:
         verbose_name = 'Титан второго поколения'
@@ -85,13 +86,15 @@ class TitanWeaponModel(AbstractEquipmentModel):
         MAIN_WEAPON = "MW", _("Основное оружие")
         SUB_WEAPON = "SW", _("Дополнительное оружие")
         TACTICAL_WEAPON = "TW", _("Тактическое оружие")
+        DEFENCE_WEAPON = "DW", _("Оборонительное оружие")
         CORE_WEAPON = "CW", _("Ядро")
 
     def user_directory_path(instance, filename):
         return "{0}/{1}".format(instance.master_titan.name, filename)
 
     weapon_image = models.ImageField(upload_to=user_directory_path, verbose_name='Изображение оружия')
-    weapon_type = models.CharField(max_length=2, choices=WeaponType.choices, default=WeaponType.MAIN_WEAPON)
+    weapon_type = models.CharField(max_length=2, choices=WeaponType.choices, default=WeaponType.MAIN_WEAPON,
+                                   verbose_name='Тип оружия')
 
     class Meta:
         verbose_name = 'Основное снаряжение титанов'
@@ -102,5 +105,3 @@ class TitanKitModel(AbstractEquipmentModel):
     class Meta:
         verbose_name = 'Дополнительный набор титана'
         verbose_name_plural = 'Дополнительные наборы титанов'
-
-
