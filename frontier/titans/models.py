@@ -67,6 +67,7 @@ class SecondGenTitanModel(AbstractTitanModel):
     ancestor_model = models.ForeignKey(FirstGenTitanModel, null=True, on_delete=models.SET_NULL,
                                        related_name='children', verbose_name='Модель-предок')
     strategy = models.TextField(blank=True, verbose_name='Стратегия')
+    additional_info = models.TextField(blank=True, verbose_name='Слот для монарха')
 
     class Meta:
         verbose_name = 'Титан второго поколения'
