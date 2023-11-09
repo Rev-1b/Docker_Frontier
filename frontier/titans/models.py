@@ -46,6 +46,7 @@ class AbstractTitanModel(NormalStringMixin, models.Model):
     name = models.CharField(max_length=255, default='Empty', verbose_name='Имя титана')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     mp_descr = models.TextField(blank=True, verbose_name='Описание на основной странице')
+
     mp_image = models.ImageField(upload_to=user_directory_path, verbose_name='Фото на основной странице')
 
     class Meta:
