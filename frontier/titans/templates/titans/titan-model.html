@@ -16,7 +16,7 @@
     <div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
          tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Ион</h5>
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">{{ titan.name }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -24,11 +24,9 @@
                 <nav class="nav nav-pills nav-obs flex-column">
                     <a class="nav-link obs-link" href="#info">Описание</a>
                     <a class="nav-link obs-link" href="#weapon">Оборудование и вооружение</a>
-                    <a class="nav-link obs-link ms-3 my-1" href="#splitter">Винтовка "Сплиттер"</a>
-                    <a class="nav-link obs-link ms-3 my-1" href="#laser-shot">Лазерный выстрел</a>
-                    <a class="nav-link obs-link ms-3 my-1" href="#laser-tripwier">Лазерная растяжка</a>
-                    <a class="nav-link obs-link ms-3 my-1" href="#vortex-shield">Вихревой щит</a>
-                    <a class="nav-link obs-link ms-3 my-1" href="#laser-core">Ядро лазера</a>
+                    {% for weapon in titan.weapon.all|dictsort:'id' %}
+                        <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
+                    {% endfor %}
                     <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
                     <a class="nav-link obs-link" href="#strategy">Стратегия</a>
                 </nav>
@@ -107,7 +105,7 @@
                     <div class="col-12">
                         <h2 id="strategy">Стратегия</h2>
                         <p>
-                            {{ titan.strategy }}
+                            {{ titan.strategy|linebreaks }}
                         </p>
                     </div>
                 </div>
