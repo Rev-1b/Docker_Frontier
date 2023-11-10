@@ -1,7 +1,7 @@
 from django.urls import path
-from titans.views import TitansView, IonView
+from titans.views import TitansView, TitanModelView
 
 urlpatterns = [
     path('', TitansView.as_view(), name='titans'),
-    path('ion/', IonView.as_view(), name='ion'),
+    path('<slug:titan_slug>', TitanModelView.as_view(), name='titan_model'),
 ]

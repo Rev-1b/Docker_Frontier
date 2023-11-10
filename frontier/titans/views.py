@@ -1,5 +1,6 @@
-from django.views.generic.base import TemplateView
+from django.views.generic import TemplateView, DetailView
 from Frontier.common.views import TitleMixin
+from titans.models import SecondGenTitanModel
 
 
 class IndexView(TitleMixin, TemplateView):
@@ -12,7 +13,14 @@ class TitansView(TitleMixin, TemplateView):
     title = 'TF2: Titans'
 
 
-class IonView(TitleMixin, TemplateView):
+class TitanModelView(DetailView):
+    model = SecondGenTitanModel
     template_name = 'titans/titan-model.html'
-    title = 'TF2: Ion'
+    slug_url_kwarg = 'titan_slug'
+    context_object_name = 'titan'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'TF2: ' + context['titan'].name
+        # context['main_weapon'] = SecondGenTitanModel.objects.get()
+        return context

@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from Frontier.common.models import NormalStringMixin
 from django.utils.translation import gettext_lazy as _
 
@@ -54,7 +56,7 @@ class AbstractTitanModel(NormalStringMixin, models.Model):
 
 
 class FirstGenTitanModel(AbstractTitanModel):
-    master_page = models.ForeignKey(MainPageModel, null=True, on_delete=models.SET_NULL, related_name='old_titans',
+    master_page = models.ForeignKey(MainPageModel, null=True, on_delete=models.SET_NULL, related_name='old_titan',
                                     verbose_name='Главная страница')
 
     class Meta:
@@ -74,13 +76,14 @@ class SecondGenTitanModel(AbstractTitanModel):
         verbose_name = 'Титан второго поколения'
         verbose_name_plural = 'Титаны второго поколения'
 
+    def get_absolute_url(self):
+        return reverse('', kwargs={'page_slug': self.slug})
+
 
 class AbstractEquipmentModel(NormalStringMixin, models.Model):
     name = models.CharField(max_length=255, default='Empty', verbose_name='Название снаряжения')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     descr = models.TextField(blank=False, verbose_name='Описание снаряжения')
-    master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL,
-                                     related_name='equipment', verbose_name='Титан-владелец')
 
 
 class TitanWeaponModel(AbstractEquipmentModel):
@@ -97,6 +100,8 @@ class TitanWeaponModel(AbstractEquipmentModel):
     weapon_image = models.ImageField(upload_to=user_directory_path, verbose_name='Изображение оружия')
     weapon_type = models.CharField(max_length=2, choices=WeaponType.choices, default=WeaponType.MAIN_WEAPON,
                                    verbose_name='Тип оружия')
+    master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL,
+                                     related_name='weapon', verbose_name='Титан-владелец')
 
     class Meta:
         verbose_name = 'Основное снаряжение титанов'
@@ -107,3 +112,6 @@ class TitanKitModel(AbstractEquipmentModel):
     class Meta:
         verbose_name = 'Дополнительный набор титана'
         verbose_name_plural = 'Дополнительные наборы титанов'
+
+    master_titan = models.ForeignKey(SecondGenTitanModel, null=True, on_delete=models.SET_NULL,
+                                     related_name='kits', verbose_name='Титан-владелец')
