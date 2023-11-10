@@ -36,207 +36,110 @@
         </div>
     </div>
 
-    <div class="container content text-shadow white-shadow">
-        <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
-            <div class="row text-center">
-                <h1>{{ titan.name }}</h1>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <h2 id="info">Описание</h2>
-                    <p>
-                        {{ titan.full_descr }}
-                    </p>
+    <section>
+        <div class="container content text-shadow white-shadow">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
+                <div class="row text-center">
+                    <h1>{{ titan.name }}</h1>
                 </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-12">
-                    <iframe width="560" height="315"
-                            src="{{ titan.video_link }}"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
-                    </iframe>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h2 id="weapon">Оборудование и Вооружение</h2>
-                </div>
-            </div>
-
-            {% for weapon in titan.weapon.all %}
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
-                    <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-8 col-md-6 col-sm-12{% endif %}">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h2 id="info">Описание</h2>
                         <p>
-                            {{ weapon.descr }}
+                            {{ titan.full_descr }}
                         </p>
                     </div>
-                    <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-4 col-md-6 col-sm-12 test{% endif %}">
-                        <img src="{{ weapon.weapon_image.url }}" alt="bruh" class="img-fluid">
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-12">
+                        <iframe width="560" height="315"
+                                src="{{ titan.video_link }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                        </iframe>
                     </div>
                 </div>
-            {% endfor %}
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="weapon">Оборудование и Вооружение</h2>
+                    </div>
+                </div>
+
+                {% for weapon in titan.weapon.all|dictsort:'id' %}
+                    <div class="row align-items-center justify-content-between">
+                        <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-8 col-md-6 col-sm-12{% endif %}">
+                            <p>
+                                {{ weapon.descr }}
+                            </p>
+                        </div>
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-4 col-md-6 col-sm-12 test{% endif %}">
+                            <img src="{{ weapon.weapon_image.url }}" alt="bruh" class="img-fluid">
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- --------------------------Additional ammunition-------------------------- -->
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="additional-modules">Дополнительные комплекты</h2>
+                    </div>
+                </div>
+
+                {% for kit in titan.kits.all|dictsort:'id' %}
+                    <div class="row align-items-center add-padding">
+                        <div class="col-12">
+                            <h3>{{ kit.name }}</h3>
+                            <p>
+                                {{ kit.descr }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- ----------------------Strategy------------------ -->
+
+                <div class="row align-items-center add-padding">
+                    <div class="col-12">
+                        <h2 id="strategy">Стратегия</h2>
+                        <p>
+                            {{ titan.strategy }}
+                        </p>
+                    </div>
+                </div>
 
 
+            </div>
         </div>
-    </div>
+    </section>
 
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <h4>
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
 
 
-{##}
-{#                <!-- --------------------------Additional ammunition-------------------------- -->#}
-{##}
-{#                <div class="row">#}
-{#                    <div class="col-12 text-center">#}
-{#                        <h2 id="additional-modules">Дополнительные комплекты</h2>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h3>Поглощение Энергии</h3>#}
-{#                        <p>#}
-{#                            Поглощение энергии позволяет восстанавливать часть энергии при попадании из Сплиттера в#}
-{#                            уязвимые части титана. В теории очень полезная способность, но на практике практически не#}
-{#                            оказывает нужного эффекта.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h3>Нуль-растяжка</h3>#}
-{#                        <p>#}
-{#                            Нуль-растяжка позволяет не тратить энергию на установку Растяжки. Данный набор позволяет#}
-{#                            исключить влияние энергии на хотя бы одну способность Иона и позволяет использовать ее#}
-{#                            более-менее на постоянной основе.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h3>Усиление вихря</h3>#}
-{#                        <p>#}
-{#                            С набором Усиление вихря выпущенные обратно во врага снаряды из Вихревого щита наносят на#}
-{#                            35% больше урона. Данный перк может сделать щит основным способом для нанесения урона, а#}
-{#                            также позволяет еще более эффективно противостоять Легионам.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h3>Большая пушка</h3>#}
-{#                        <p>#}
-{#                            Большая пушка позволяет ядру работать дольше и нанести потенциально больше урона. Хорошо#}
-{#                            себя показывает с набором Перегрузка ядра, позволяя очень часто использовать ядро и очень#}
-{#                            сильно бить им. Подходит больше для опытных игроков.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h3>Преломляющая линза</h3>#}
-{#                        <p>#}
-{#                            Преломляющая линза позволяет при прицеливании со Сплиттера выпускать не три, а пять#}
-{#                            снарядов, что дает огромный прирост к урону в минуту. Данный набор позволяет сделать#}
-{#                            Сплиттер основным способом нанесения урона, но будет потреблять много энергии, не оставляя#}
-{#                            ее на тот же щит.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <!-- ----------------------Strategy------------------ -->#}
-{##}
-{#                <div class="row align-items-center add-padding">#}
-{#                    <div class="col-12">#}
-{#                        <h2 id="strategy">Стратегия</h2>#}
-{#                        <p>#}
-{#                            Ион – первый титан, доступный игрокам в мультиплеере, однако он далеко не самый#}
-{#                            простой в обращении. Новичку для того, чтобы показывать более-менее приемлемые#}
-{#                            результаты, необходимо научиться контролировать расход энергии и научиться правильно#}
-{#                            пользоваться «Вихревым щитом». Основная проблема Иона в том, что он обладает очень#}
-{#                            низким уроном с основного оружия, компенсируя это невероятно эффективной защитной#}
-{#                            способностью. Однако, профессиональный Ион – это то, что вы точно не хотите#}
-{#                            встретить на поле боя. Из-за «Вихревого щита» Ион является абсолютным контрпиком#}
-{#                            Легиона и может доставить множество неприятных эмоций Тону, Монарху и Нордстару.#}
-{#                            Если дополнительно установить модификацию «Усиление вихря», то вы практически#}
-{#                            перестанете получать урон, перенаправляя все снаряды обратно во врага и вызывая их#}
-{#                            искреннюю ненависть. <br><br>#}
-{#                            «Лазерный выстрел» - очень хорошая способность для уничтожения катапультировавшихся#}
-{#                            пилотов, так как является высокоточной хитскан атакой. Наносит серьезный урон при#}
-{#                            попадании в уязвимые точки противника, но абсолютно неэффективен против#}
-{#                            энергетических щитов Тона и Легиона. Теоретически, обладая хорошим аимом, можно#}
-{#                            выполнять роль снайпера, используя только «Лазерный выстрел», но мне кажется, что#}
-{#                            это извращение. <br><br>#}
-{#                            «Лазерная растяжка» - неплохая способность зонинга противника, однако, далеко не#}
-{#                            самая эффективная. Начнем с того, что она легко уничтожается выстрелами на#}
-{#                            рассоянии, и в отличие от аналогичной способности Нордстара, ее практически#}
-{#                            невозможно не заметить. Однако, если на вас нападает злой Ронин, то он просто не#}
-{#                            успеет среагировать на поставленную растяжку и словит взрыв на треть полоски#}
-{#                            прочности. При использовании комплекта «Нуль-растяжка» использование способности не#}
-{#                            тратит энергию, но я считаю, что есть комплекты получше. <br><br>#}
-{#                            Ну и наконец, «Ядро Лазера». Очень сильная способность, позволяющая отправить на#}
-{#                            респ только что высадившегося титана с полным здоровьем. Во время использования Ион#}
-{#                            очень уязвим, так как движется намного медленнее и не может использовать#}
-{#                            способности, но право слово, кого это волнует?) Когда ты видишь Иона с активным#}
-{#                            Ядром, мгновенно пробивающим любые щиты и наносящим колоссальный урон, вряд ли у тебя#}
-{#                            возникнет идея встать перед ним и пострелять. Но магия начинается при установке#}
-{#                            комплекта «Большой лазер», увеличивающим длительность работы ядра. С такой#}
-{#                            модификацией, даже Скорчу и Легиону поплохеет. <br><br>#}
-{#                            Как мне кажется, есть три основных билда на Иона: для начинающих, для продвинутых#}
-{#                            пользователей «Вихревого щита» и для любителей сжигать все «Ядром Лазера».#}
-{#                            Для начинающего стоит взять стандартную «Преломляющую линзу», повышающую урон от#}
-{#                            основного оружия в прицеле, но тогда придется отказаться от частого использования#}
-{#                            остальных способностей, потому что энергии на все не хватит. Из общих комплектов#}
-{#                            идеально подойдет «Турбодвигатель» для дополнительного рывка или «Контрмеры», если#}
-{#                            бесят Родео-пилоты. <br><br>#}
-{#                            Если вы уже освоили «Вихревой щит», то вне всяких сомнения надо брать «Усиление#}
-{#                            вихря», по моему скромному мнению являющемуся лучшим комплектом на Иона. Из основных#}
-{#                            модулей по желанию, но я лично беру турбодвигатель, чтобы при израсходовании энергии#}
-{#                            можно было быстро уйти за укрытие. <br><br>#}
-{#                            Ну а любителей лазертага нужна связка из «Перегрузки ядра» и «Большого лазера».#}
-{#                            Очень страшная комбинация, особенно если вы умеете быстро фармить заряд ядра.#}
-{#                        </p>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-{#    </section>#}
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-6">
-                <h4>
-
-                </h4>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script src="/static/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', function () {
-        if (window.pageYOffset > 100) {
-            nav.classList.add('transparent-nav');
-        } else {
-            nav.classList.remove('transparent-nav');
-        }
-    });
-</script>
-
-</body>
-
-</html>
+{% block additional_scripts %}
+    <script>
+        var nav = document.querySelector('nav');
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 100) {
+                nav.classList.add('transparent-nav');
+            } else {
+                nav.classList.remove('transparent-nav');
+            }
+        });
+    </script>
+{% endblock %}
