@@ -28,6 +28,9 @@
                         <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
                     {% endfor %}
                     <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
+                    {% if titan.additional_info != null %}
+                        <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
+                    {% endif %}
                     <a class="nav-link obs-link" href="#strategy">Стратегия</a>
                 </nav>
             </nav>
@@ -71,7 +74,8 @@
                             <p>{{ weapon.descr }}</p>
                         </div>
                         <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-4 col-md-6 col-sm-12 test{% endif %}">
-                            <img src="{{ weapon.weapon_image.url }}" alt="bruh" class="img-fluid">
+                            <img src="{{ weapon.weapon_image.url }}" alt="bruh"
+                                 class="img-fluid {% if weapon.weapon_type == 'MW' %}white-shadow{% endif %}">
                         </div>
                     </div>
                 {% endfor %}
@@ -92,6 +96,22 @@
                         </div>
                     </div>
                 {% endfor %}
+
+                <!-- ----------------------Only for Monarch------------------ -->
+
+                {% if titan.additional_info != null %}
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 id="monarch_core">Эволюция ядра</h2>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-12">
+                            <p>{{ titan.additional_info|linebreaks }}</p>
+                        </div>
+                    </div>
+                {% endif %}
 
                 <!-- ----------------------Strategy------------------ -->
 
