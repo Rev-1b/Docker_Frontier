@@ -43,9 +43,7 @@
                 <div class="row align-items-center">
                     <div class="col-12">
                         <h2 id="info">Описание</h2>
-                        <p>
-                            {{ titan.full_descr }}
-                        </p>
+                        <p>{{ titan.full_descr }}</p>
                     </div>
                 </div>
 
@@ -70,9 +68,7 @@
                     <div class="row align-items-center justify-content-between">
                         <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
                         <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-8 col-md-6 col-sm-12{% endif %}">
-                            <p>
-                                {{ weapon.descr }}
-                            </p>
+                            <p>{{ weapon.descr }}</p>
                         </div>
                         <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-4 col-md-6 col-sm-12 test{% endif %}">
                             <img src="{{ weapon.weapon_image.url }}" alt="bruh" class="img-fluid">
@@ -92,9 +88,7 @@
                     <div class="row align-items-center add-padding">
                         <div class="col-12">
                             <h3>{{ kit.name }}</h3>
-                            <p>
-                                {{ kit.descr }}
-                            </p>
+                            <p>{{ kit.descr }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -104,9 +98,7 @@
                 <div class="row align-items-center add-padding">
                     <div class="col-12">
                         <h2 id="strategy">Стратегия</h2>
-                        <p>
-                            {{ titan.strategy|linebreaks }}
-                        </p>
+                        <p>{{ titan.strategy|linebreaks }}</p>
                     </div>
                 </div>
 
