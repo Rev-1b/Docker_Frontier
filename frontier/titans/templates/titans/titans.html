@@ -7,7 +7,7 @@
 {% block content %}
     <section>
 
-        <!-- Offcanvas (side navigation) -->
+        <!--------------------------- Offcanvas (side navigation) --------------->
 
         <button class="btn menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
                 aria-controls="offcanvasScrolling">
@@ -92,221 +92,43 @@
                             </p>
                         </div>
                     </div>
-
                 {% endfor %}
 
-                <div class="row">
-                    <div class="col12">
-                        <h2 id="atlas">Атлас</h2>
-                    </div>
-                </div>
+                <!-- ------------------------- Titan section -------------------------- -->
 
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Атлас – это первая серийная модель титанов. На основе именно этого корпуса впоследствии были
-                            созданы Огр и Страйдер. Однако, возраст этой модели вовсе не указывает на ее бесполезность.
-                            Атлас является своего рода «рабочей лошадкой» вселенной Titalfall. В нем найден идеальный
-                            баланс
-                            между мобильностью, живучестью и огневой мощью. В отличие от своих более молодых коллег,
-                            этот
-                            титан универсален и предназначен для выполнения широкого круга задач.
-                            <br><br>После Битвы за Деметру, на основе шасси Атласа, были разработаны две модели нового
-                            поколения: Ион и Тон
+                {% for old_titan in old_titans %}
+                    <div class="row">
+                        <div class="col12">
+                            <h2 id="atlas">{{ old_titan.name }}</h2>
+                        </div>
+                    </div>
 
-                        </p>
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                            <p>{{ old_titan.mp_descr }}</p>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 test">
+                            <img src="{{ old_titan.mp_image.url }}" alt="bruh" class="img-fluid white-shadow">
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/atlas-new.jpg" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
 
-                <div class="row align-items-center justify-content-between">
-                    <a href="ion"><h3 id="ion">Ион</h3></a>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Ион – титан второго поколения, специализирующийся на энергетическом оружии. Вооружен
-                            Винтовкой
-                            Сплиттер, Плечевой лазерной пушкой и Энерголовушками, а для защиты оборудован Вихревым
-                            щитом.
-                            Использует Ядро Лазера.
-                            <br>В связи в высоким энергопотреблением, при управлении этим титаном необходимо следить за
-                            уровнем энергии.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Ion.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="ton">Тон</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Тон – титан второго поколения, специализирующийся на самонаводящемся ракетном вооружении.
-                            Вооружен 40-мм трекер пушкой, Ракетами-следопытами и Сонарным пульсаром. Для защиты
-                            оборудован
-                            Стеной частиц. Использует Ядро Залпа.
-                            <br>Из-за особенностей вооружения предпочитает бой на средне-дальней дистанции.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Tone.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center">
-                    <div class="col12">
-                        <h2 id="ogre">Огр</h2>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Огр – титан тяжелого класса, предназначенный для подавления врага. Являясь переосмыслением
-                            Атласа, в сравнении с предком Огр имеет намного более серьезное бронирование, позволяющее
-                            ему
-                            выживать под плотным огнем противника. Однако, в связи с увеличившейся массой, Огр сильно
-                            утратил в маневренности, поэтому он не способен к продолжительным рывкам и бегу.
-                            <br><br>После Битвы за Деметру, на основе шасси Огра были разработаны две модели нового
-                            поколения: Скорч и Легион
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/ogre.jpg" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="scorch">Скорч</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Скорч – титан второго поколения, специализирующийся на нанесении урона огнем. Вооружен
-                            Пусковой
-                            Термитной Установкой Т-203, бочками с горючим газом и установкой для выставления огненной
-                            стены.
-                            В целях защиты Скорч оборудован Тепловым щитом. Использует Ядро Огня.
-                            <br>Скорч – это идеальный титан для использования тактики «выжженой земли».
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Scorch.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="legion">Легион</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Легион – титан второго поколения, использующий тяжелый пулемет роторного типа «Хищник». Все
-                            дополнительное оборудование тем или иным образом модифицирует это оружие. В них входят
-                            «Переключатель режимов», «Мощный выстрел» и «Орудийный Щит». Использует Ядро Смартгана.
-                            <br>Легион по праву считается универсальным титаном, так как помимо укрепленного корпуса, он
-                            способен наносить урон противнику на любых дистанциях.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Legion.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center">
-                    <div class="col12">
-                        <h2 id="strayder">Страйдер</h2>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Страйдер – титан легкого класса, быстро перемещающийся по полю боя. Он является сильно
-                            облегченной версией Атласа, за счет чего может развивать огромную сккорость и способен
-                            совершить
-                            несколько рывков подряд. Однако, он намного менее устойчив к повреждениям, поэтому основой
-                            выживания у этого титана является уклонение. Нередко из-за сверхмобильности выступает в роли
-                            титана дальнего боя.
-                            <br><br>После Битвы за Деметру, на основе шасси Страйдера были разработаны две модели нового
-                            поколения: Ронин и Нордстар.
-
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/stryder.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="ronin">Ронин</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Ронин – титан второго поколения, специализирующийся на ближнем бое. Вооружет 4-зарядным
-                            дробовиком, мечом и установкой «Шокирующей волны». Защищается при помощи своего меча,
-                            блокируя вражеские снаряды. Использует Ядро Меча.
-                            <br>Лучше всего Ронин раскрывается в ближнем бою. Он обладает инструментами, чтобы догнать,
-                            обездвижить и уничтожить практически любого врага. Однако, он слабо бронирован, поэтому
-                            нуждается в огневом прикрытии.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Ronin.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="northstar">Нордстар</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Нордстар – титан второго поколения, специализирующийся исключительно на дальнем бое.
-                            Вооружен Рельсотроном, Пусковым модулем Кассетных ракет и модулем полета. Для контроля
-                            дистанции несет 2 замедляющие ловушки. Использует Ядро полета.
-                            <br>Титан, зависящий от команды. Наносит огромный урон на дальней дистанции, но очень уязвим
-                            в ближнем бою.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Northstar.webp" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-                <div class="row align-items-center">
-                    <div class="col12">
-                        <h2 id="unusial">Особая категория</h2>
-                        <p>
-                            Титаны особой категории являются не модификациями существующих ранее корпусов, а
-                            самостоятельными разработками.
-                    </div>
-                </div>
-
-                <div class="row align-items-center justify-content-between">
-                    <h3 id="monarch">Монарх</h3>
-                    <div class="col-lg-8 col-md-6 col-sm-12">
-                        <p>
-                            Монарх – первый и единственный титан поколения 2.5. Он создан на основе шасси «Авангард»
-                            ополчения. Монарх способен «эволюционировать» прямо на поле боя. С каждым применением своего
-                            ядра он улучшает эффективность одной из своих подсистем. Вооружен 20-мм пушком XO-16,
-                            установкой перекачки энергии, модулем ускоренной перезарядки и самонаводящимися ракетами.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 test">
-                        <img src="/static/img/Titans/Monarch.png" alt="bruh" class="img-fluid white-shadow">
-                        <h6>Some text</h6>
-                    </div>
-                </div>
-
-
+                    {% for new_titan in old_titan.children.all %}
+                        <div class="row align-items-center justify-content-between">
+                            <a href="{{ new_titan.get_absolute_url }}"><h3
+                                    id="{{ new_titan.slug }}">{{ new_titan.name }}</h3></a>
+                            <div class="col-lg-8 col-md-6 col-sm-12">
+                                <p>{{ new_titan.mp_descr }}</p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 test">
+                                <img src="{{ new_titan.mp_image.url }}" alt="bruh" class="img-fluid white-shadow">
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </section>
+
     <footer>
         <div class="container">
             <div class="row">

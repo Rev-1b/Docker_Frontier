@@ -77,7 +77,7 @@ class SecondGenTitanModel(AbstractTitanModel):
         verbose_name_plural = 'Титаны второго поколения'
 
     def get_absolute_url(self):
-        return reverse('', kwargs={'page_slug': self.slug})
+        return reverse('titan_model', kwargs={'titan_slug': self.slug})
 
 
 class AbstractEquipmentModel(NormalStringMixin, models.Model):
