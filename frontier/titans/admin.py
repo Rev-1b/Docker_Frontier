@@ -1,40 +1,34 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import MainPageModel, ChapterModel, ContentBlockWithImageVideoModel, FirstGenTitanModel, \
-    SecondGenTitanModel, TitanWeaponModel, TitanKitModel
-
-
-@admin.register(MainPageModel)
-class MainPageAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']
+from .models import *
 
 
 @admin.register(ChapterModel)
 class ChapterAdmin(admin.ModelAdmin):
-    list_display = ['name', 'master_page']
-    search_fields = ['name', 'master_page__name']
+    list_display = ['name', 'curr_page']
+    list_editable = ['curr_page']
+    list_filter = ['curr_page']
+    search_fields = ['name', 'curr_page']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_page']
 
 
-@admin.register(ContentBlockWithImageVideoModel)
+@admin.register(MediaContentBlockModel)
 class ContentBlockAdmin(admin.ModelAdmin):
-    list_display = ['name', 'master_chapter']
-    search_fields = ['name', 'master_chapter__name']
+    list_display = ['name', 'chapter']
+    list_editable = ['chapter']
+    list_filter = ['chapter']
+    search_fields = ['name', 'chapter__name']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_chapter']
 
 
 @admin.register(FirstGenTitanModel)
 class FirstGenTitanAdmin(admin.ModelAdmin):
-    fields = ['name', 'slug', ('mp_image', 'show_image'), 'mp_descr', 'master_page']
-    list_display = ['name', 'show_image', 'master_page']
+    fields = ['name', 'slug', ('mp_image', 'show_image'), 'mp_descr']
+    list_display = ['name', 'show_image']
     readonly_fields = ['show_image']
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_page']
 
     @admin.display(description='Изображение титана')
     def show_image(self, titan: FirstGenTitanModel):
@@ -46,7 +40,7 @@ class FirstGenTitanAdmin(admin.ModelAdmin):
 @admin.register(SecondGenTitanModel)
 class SecondGenTitanAdmin(admin.ModelAdmin):
     fields = ['name', 'slug', ('mp_image', 'show_image'), 'mp_descr', 'full_descr', 'video_link', 'strategy',
-              'additional_info', 'ancestor_model']
+              'ancestor_model']
     list_display = ['name', 'show_image', 'ancestor_model']
     list_editable = ['ancestor_model']
     readonly_fields = ['show_image']
@@ -63,13 +57,13 @@ class SecondGenTitanAdmin(admin.ModelAdmin):
 
 @admin.register(TitanWeaponModel)
 class TitanWeaponAdmin(admin.ModelAdmin):
-    fields = ['name', 'slug', ('weapon_image', 'show_image'), 'weapon_type', 'descr', 'master_titan']
-    list_display = ['name', 'weapon_type', 'show_image', 'master_titan']
-    list_editable = ['weapon_type', 'master_titan']
+    fields = ['name', 'slug', ('weapon_image', 'show_image'), 'weapon_type', 'descr', 'titan']
+    list_display = ['name', 'weapon_type', 'show_image', 'titan']
+    list_editable = ['weapon_type', 'titan']
     readonly_fields = ['show_image']
-    search_fields = ['name', 'master_titan__name']
+    list_filter = ['titan', 'weapon_type']
+    search_fields = ['name', 'titan__name']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_titan', 'weapon_type']
 
     @admin.display(description='Изображение оружия')
     def show_image(self, weapon: TitanWeaponModel):
@@ -80,8 +74,8 @@ class TitanWeaponAdmin(admin.ModelAdmin):
 
 @admin.register(TitanKitModel)
 class TitanKitAdmin(admin.ModelAdmin):
-    list_display = ['name', 'master_titan']
-    list_editable = ['master_titan']
-    search_fields = ['name', 'master_titan__name']
+    list_display = ['name', 'titan']
+    list_editable = ['titan']
+    list_filter = ['titan']
+    search_fields = ['name', 'titan__name']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ['master_titan']

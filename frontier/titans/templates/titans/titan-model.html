@@ -28,7 +28,7 @@
                         <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
                     {% endfor %}
                     <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
-                    {% if titan.additional_info != null %}
+                    {% if titan.additional_info != '' %}
                         <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
                     {% endif %}
                     <a class="nav-link obs-link" href="#strategy">Стратегия</a>
@@ -99,7 +99,8 @@
 
                 <!-- ----------------------Only for Monarch------------------ -->
 
-                {% if titan.additional_info != null %}
+                {% if titan.additional_info != '' %}
+
                     <div class="row">
                         <div class="col-12 text-center">
                             <h2 id="monarch_core">Эволюция ядра</h2>
@@ -115,10 +116,10 @@
 
                 <!-- ----------------------Strategy------------------ -->
 
-                <div class="row align-items-center add-padding">
+                <div class="row temp_style">
                     <div class="col-12">
                         <h2 id="strategy">Стратегия</h2>
-                        <p>{{ titan.strategy|linebreaks }}</p>
+                        <p class="temp_style">{{ titan.strategy|linebreaks }}</p>
                     </div>
                 </div>
 

@@ -4,6 +4,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/titans.css' %}">
 {% endblock %}
+
 {% block content %}
     <section>
 
@@ -38,6 +39,8 @@
             </div>
         </div>
 
+            <!--------------------------- Content Section ------------------------>
+
         <div class="container content text-shadow">
             <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
                 {% for chapter in chapters %}
@@ -59,7 +62,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-12 test">
                                     <img src="{{ block.image.url }}" alt="bruh"
                                          class="img-fluid white-shadow">
-                                    <h6>{{ block.image_or_video_descr }}</h6>
+                                    <h6>{{ block.media_descr }}</h6>
                                 </div>
                             </div>
                         {% endif %}
@@ -90,7 +93,7 @@
                     </div>
                 {% endfor %}
 
-                <!-- ------------------------- Titan section -------------------------- -->
+                <!-- ----------------------------- Titans section -------------------------- -->
 
                 {% for old_titan in old_titans %}
                     <div class="row">
@@ -124,6 +127,8 @@
             </div>
         </div>
     </section>
+
+            <!--------------------------- Footer section --------------------------->
 
     <footer>
         <div class="container">

@@ -8,13 +8,13 @@ class IndexView(TitleMixin, TemplateView):
     title = 'TF2: Main Page'
 
 
-class TitansView(TemplateView):
+class TitansView(TitleMixin, TemplateView):
     template_name = 'titans/titans.html'
+    title = 'TF2: Титаны'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'TF2: Титаны'
-        context['chapters'] = ChapterModel.objects.filter(master_page__name='Титаны')
+        context['chapters'] = ChapterModel.objects.filter(curr_page=ChapterModel.ChapterType.TITAN_PAGE)
         context['old_titans'] = FirstGenTitanModel.objects.all()
         return context
 
