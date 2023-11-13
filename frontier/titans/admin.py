@@ -39,8 +39,7 @@ class FirstGenTitanAdmin(admin.ModelAdmin):
 
 @admin.register(SecondGenTitanModel)
 class SecondGenTitanAdmin(admin.ModelAdmin):
-    fields = ['name', 'slug', ('mp_image', 'show_image'), 'mp_descr', 'full_descr', 'video_link', 'strategy',
-              'ancestor_model']
+    fields = ['name', 'slug', ('mp_image', 'show_image'), 'mp_descr', 'full_descr', 'video_link', 'ancestor_model']
     list_display = ['name', 'show_image', 'ancestor_model']
     list_editable = ['ancestor_model']
     readonly_fields = ['show_image']
@@ -79,3 +78,43 @@ class TitanKitAdmin(admin.ModelAdmin):
     list_filter = ['titan']
     search_fields = ['name', 'titan__name']
     prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(StrategyBlockModel)
+class StrategyBlockAdmin(admin.ModelAdmin):
+    fields = ['name', 'slug', 'content', ('image', ), 'titan']
+    list_display = ['name', 'titan']
+    list_editable = ['titan']
+    list_filter = ['titan']
+    search_fields = ['name', 'titan__name']
+    prepopulated_fields = {'slug': ('name',)}
+
+    @admin.display(description='Дополнительное изображение')
+    def show_image(self, strategy: StrategyBlockModel):
+        if strategy.image:
+            return mark_safe(f"<img src='{strategy.image.url}' width=50>")
+        return 'Нет изображения'
+
+
+@admin.register(MonarchCoreStageModel)
+class MonarchCoreStageAdmin(admin.ModelAdmin):
+    list_display = ['stage']
+    search_fields = ['stage']
+    prepopulated_fields = {'slug': ('stage',)}
+
+
+@admin.register(MonarchCoreUpgradeModel)
+class MonarchCoreUpgradeAdmin(admin.ModelAdmin):
+    fields = ['name', 'slug', 'content', ('image', 'display_image'), 'stage']
+    list_display = ['name', 'stage']
+    list_editable = ['stage']
+    list_filter = ['stage']
+    search_fields = ['name', 'stage__stage']
+    prepopulated_fields = {'slug': ('name',)}
+
+    @admin.display(description='Дополнительное изображение')
+    def display_image(self, core_upgrade: MonarchCoreUpgradeModel):
+        if core_upgrade.image:
+            return mark_safe(f"<img src='{core_upgrade.image.url}' width=50>")
+        return 'Нет изображения'
+

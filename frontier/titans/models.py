@@ -5,7 +5,7 @@ from Frontier.common.models import NormalStringMixin
 from django.utils.translation import gettext_lazy as gl
 
 
-# ---------------------------------- Abstract Models Section -------------------------------------------
+# -------------------------------------------- Abstract Models Section -------------------------------------------------
 
 class AbstractTitanModel(NormalStringMixin, models.Model):
     class Meta:
@@ -27,17 +27,12 @@ class AbstractEquipmentModel(NormalStringMixin, models.Model):
 
 
 class AbstractContentModel(NormalStringMixin, models.Model):
-    def user_directory_path(instance, filename):
-        raise TypeError('Не переопределен метод абстрактного класса "AbstractContentModel"')
-
     name = models.CharField(max_length=255, default='Empty', verbose_name='Имя блока')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     content = models.TextField(verbose_name='Наполнение')
-    image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
-                              verbose_name='Ссылка на изображение')
 
 
-# --------------------------------- Content Models Section -------------------------------------------------
+# ------------------------------------------- Content Models Section ---------------------------------------------------
 
 class ChapterModel(NormalStringMixin, models.Model):
     class Meta:
@@ -65,13 +60,15 @@ class MediaContentBlockModel(AbstractContentModel):
     def user_directory_path(instance, filename):
         return f"additional/{filename}"
 
+    image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
+                              verbose_name='Ссылка на изображение')
     video_link = models.CharField(max_length=255, blank=True, verbose_name='Ссылка на видео')
     media_descr = models.CharField(max_length=255, verbose_name='Описание фото/видео')
     chapter = models.ForeignKey(to=ChapterModel, on_delete=models.SET_NULL, null=True, blank=True,
                                 related_name='content', verbose_name='Связанная глава')
 
 
-# ------------------------------------ Titan Models Section -----------------------------------------------------
+# ------------------------------------------- Titan Models Section -----------------------------------------------------
 
 class FirstGenTitanModel(AbstractTitanModel):
     class Meta:
@@ -89,12 +86,11 @@ class SecondGenTitanModel(AbstractTitanModel):
 
     full_descr = models.TextField(blank=True, verbose_name='Подробное описание')
     video_link = models.CharField(max_length=255, blank=False, verbose_name='Ссылка на видео')
-    strategy = models.TextField(blank=True, verbose_name='Стратегия')
     ancestor_model = models.ForeignKey(to=FirstGenTitanModel, on_delete=models.SET_NULL, null=True, blank=True,
                                        related_name='children', verbose_name='Модель-предок')
 
 
-# ----------------------------------- Equipment & Strategy Models Section ------------------------------------------
+# --------------------------------------- Equipment & Strategy Models Section ------------------------------------------
 
 class TitanWeaponModel(AbstractEquipmentModel):
     class Meta:
@@ -127,19 +123,21 @@ class TitanKitModel(AbstractEquipmentModel):
                               related_name='kits', verbose_name='Титан-владелец')
 
 
-class StrategyBlock(AbstractContentModel):
+class StrategyBlockModel(AbstractContentModel):
     class Meta:
-        verbose_name = ''
-        verbose_name_plural = 'Дополнительные наборы титанов'
+        verbose_name = 'Блок стратегии'
+        verbose_name_plural = 'Блоки стратегии'
 
     def user_directory_path(instance, filename):
         return "{0}/strategy_pictures/{1}".format(instance.titan.name, filename)
 
-    titan = models.ForeignKey(to=FirstGenTitanModel, on_delete=models.SET_NULL, null=True, blank=True,
+    image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
+                              verbose_name='Ссылка на изображение')
+    titan = models.ForeignKey(to=SecondGenTitanModel, on_delete=models.SET_NULL, null=True, blank=True,
                               related_name='strategy', verbose_name='Титан-владелец')
 
 
-#  ------------------------------------- Only For Monarch ---------------------------------------------------
+#  --------------------------------------------- Only For Monarch ------------------------------------------------------
 
 class MonarchCoreStageModel(NormalStringMixin, models.Model):
     class Meta:
@@ -159,5 +157,7 @@ class MonarchCoreUpgradeModel(AbstractContentModel):
     def user_directory_path(instance, filename):
         return f"monarch/core_upgrades/{filename}"
 
+    image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
+                              verbose_name='Ссылка на изображение')
     stage = models.ForeignKey(to=MonarchCoreStageModel, on_delete=models.SET_NULL, null=True, blank=True,
                               related_name='upgrades', verbose_name='Связанная стадия')
