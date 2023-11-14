@@ -82,7 +82,7 @@ class TitanKitAdmin(admin.ModelAdmin):
 
 @admin.register(StrategyBlockModel)
 class StrategyBlockAdmin(admin.ModelAdmin):
-    fields = ['name', 'slug', 'content', ('image', ), 'titan']
+    fields = ['name', 'slug', 'content', ('image', 'display_image'), 'titan']
     list_display = ['name', 'titan']
     list_editable = ['titan']
     list_filter = ['titan']
@@ -90,7 +90,7 @@ class StrategyBlockAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
     @admin.display(description='Дополнительное изображение')
-    def show_image(self, strategy: StrategyBlockModel):
+    def display_image(self, strategy: StrategyBlockModel):
         if strategy.image:
             return mark_safe(f"<img src='{strategy.image.url}' width=50>")
         return 'Нет изображения'
@@ -117,4 +117,3 @@ class MonarchCoreUpgradeAdmin(admin.ModelAdmin):
         if core_upgrade.image:
             return mark_safe(f"<img src='{core_upgrade.image.url}' width=50>")
         return 'Нет изображения'
-

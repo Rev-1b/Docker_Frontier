@@ -21,15 +21,21 @@ class AbstractTitanModel(NormalStringMixin, models.Model):
 
 
 class AbstractEquipmentModel(NormalStringMixin, models.Model):
+    class Meta:
+        abstract = True
+
     name = models.CharField(max_length=255, default='Empty', verbose_name='Название снаряжения')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     descr = models.TextField(blank=False, verbose_name='Описание снаряжения')
 
 
 class AbstractContentModel(NormalStringMixin, models.Model):
+    class Meta:
+        abstract = True
+
     name = models.CharField(max_length=255, default='Empty', verbose_name='Имя блока')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
-    content = models.TextField(verbose_name='Наполнение')
+    content = models.TextField(verbose_name='Наполнение', null=True)
 
 
 # ------------------------------------------- Content Models Section ---------------------------------------------------
@@ -42,7 +48,7 @@ class ChapterModel(NormalStringMixin, models.Model):
     class ChapterType(models.TextChoices):
         TITAN_PAGE = "TP", gl("Главная страница титанов")
         PILOT_PAGE = "PP", gl("Главная страница пилотов")
-        UNDEFINED = "UN", gl("Неопределено")
+        UNDEFINED = "UN", gl("Не определено")
 
     name = models.CharField(max_length=255, default='Empty', verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
@@ -53,12 +59,14 @@ class ChapterModel(NormalStringMixin, models.Model):
 
 
 class MediaContentBlockModel(AbstractContentModel):
+
     class Meta:
         verbose_name = 'Основная контентная единица'
         verbose_name_plural = 'Основные контентные единицы'
 
     def user_directory_path(instance, filename):
         return f"additional/{filename}"
+
 
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
                               verbose_name='Ссылка на изображение')
