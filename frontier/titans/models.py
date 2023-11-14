@@ -59,14 +59,12 @@ class ChapterModel(NormalStringMixin, models.Model):
 
 
 class MediaContentBlockModel(AbstractContentModel):
-
     class Meta:
         verbose_name = 'Основная контентная единица'
         verbose_name_plural = 'Основные контентные единицы'
 
     def user_directory_path(instance, filename):
         return f"additional/{filename}"
-
 
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
                               verbose_name='Ссылка на изображение')

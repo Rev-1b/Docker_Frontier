@@ -83,7 +83,8 @@ class TitanKitAdmin(admin.ModelAdmin):
 @admin.register(StrategyBlockModel)
 class StrategyBlockAdmin(admin.ModelAdmin):
     fields = ['name', 'slug', 'content', ('image', 'display_image'), 'titan']
-    list_display = ['name', 'titan']
+    list_display = ['name', 'titan', 'display_image']
+    readonly_fields = ['display_image']
     list_editable = ['titan']
     list_filter = ['titan']
     search_fields = ['name', 'titan__name']
@@ -106,7 +107,8 @@ class MonarchCoreStageAdmin(admin.ModelAdmin):
 @admin.register(MonarchCoreUpgradeModel)
 class MonarchCoreUpgradeAdmin(admin.ModelAdmin):
     fields = ['name', 'slug', 'content', ('image', 'display_image'), 'stage']
-    list_display = ['name', 'stage']
+    list_display = ['name', 'stage', 'display_image']
+    readonly_fields = ['display_image']
     list_editable = ['stage']
     list_filter = ['stage']
     search_fields = ['name', 'stage__stage']
