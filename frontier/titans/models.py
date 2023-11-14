@@ -161,7 +161,7 @@ class MonarchCoreUpgradeModel(AbstractContentModel):
         verbose_name_plural = 'Улучшения ядра Монарха'
 
     def user_directory_path(instance, filename):
-        return f"monarch/core_upgrades/{filename}"
+        return f"Монарх/core_upgrades/{filename}"
 
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
                               verbose_name='Ссылка на изображение')
