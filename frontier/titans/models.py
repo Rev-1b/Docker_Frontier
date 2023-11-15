@@ -150,7 +150,7 @@ class MonarchCoreStageModel(NormalStringMixin, models.Model):
         verbose_name = 'Стадия эволюции Монарха'
         verbose_name_plural = 'Стадии эволюции Монарха'
 
-    stage = models.CharField(max_length=255, default='Empty', verbose_name='Стадия эволюции')
+    name = models.CharField(max_length=255, default='Empty', verbose_name='Стадия эволюции')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Слаг')
     descr = models.TextField(blank=False, verbose_name='Описание стадии')
 

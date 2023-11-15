@@ -99,9 +99,9 @@ class StrategyBlockAdmin(admin.ModelAdmin):
 
 @admin.register(MonarchCoreStageModel)
 class MonarchCoreStageAdmin(admin.ModelAdmin):
-    list_display = ['stage']
-    search_fields = ['stage']
-    prepopulated_fields = {'slug': ('stage',)}
+    list_display = ['name']
+    search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(MonarchCoreUpgradeModel)
