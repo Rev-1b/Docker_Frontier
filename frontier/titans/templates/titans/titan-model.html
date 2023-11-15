@@ -8,8 +8,8 @@
 
     <!-- --------------------------Offcanvas (side navigation)------------------------ -->
 
-    <button class="btn menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling">
+    <button id="open-offvanvas-button" class="btn menu-btn" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
         <i class="icon-chart-line icon"></i>
     </button>
 
@@ -17,7 +17,8 @@
          tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">{{ titan.name }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button id="close-offvanvas-button" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
@@ -137,6 +138,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-12">
                             <p>{{ strategy_block.content|linebreaks }}</p>
+                            <br>
                         </div>
                         <div class="col-12">
                             <img src="{{ strategy_block.image.url }}" alt="bruh"
@@ -175,5 +177,16 @@
                 nav.classList.remove('transparent-nav');
             }
         });
+
+        const openButton = document.getElementById("open-offvanvas-button");
+        const closeButton = document.getElementById("close-offvanvas-button");
+
+        openButton.addEventListener('click', function () {
+            openButton.style.visibility = 'hidden';
+        });
+        closeButton.addEventListener('click', function () {
+            openButton.style.visibility = 'visible';
+        });
+
     </script>
 {% endblock %}
