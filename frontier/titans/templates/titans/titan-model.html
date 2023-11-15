@@ -28,9 +28,9 @@
                         <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
                     {% endfor %}
                     <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
-                    {#                    {% if titan.additional_info != '' %}#}
-                    {#                        <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>#}
-                    {#                    {% endif %}#}
+                    {% if titan.name == 'Монарх' %}
+                        <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
+                    {% endif %}
                     <a class="nav-link obs-link" href="#strategy">Стратегия</a>
                 </nav>
             </nav>
@@ -70,10 +70,10 @@
                 {% for weapon in titan.weapon.all|dictsort:'id' %}
                     <div class="row align-items-center justify-content-between">
                         <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
-                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-8 col-md-6 col-sm-12{% endif %}">
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-9 col-md-6 col-sm-12{% endif %}">
                             <p>{{ weapon.descr }}</p>
                         </div>
-                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-4 col-md-6 col-sm-12 test{% endif %}">
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-3 col-md-6 col-sm-12 test{% endif %}">
                             <img src="{{ weapon.weapon_image.url }}" alt="bruh"
                                  class="img-fluid {% if weapon.weapon_type == 'MW' %}white-shadow{% endif %}">
                         </div>
@@ -99,20 +99,31 @@
 
                 <!-- ----------------------Only for Monarch------------------ -->
 
-                {#                {% if titan.additional_info != '' %}#}
-                {##}
-                {#                    <div class="row">#}
-                {#                        <div class="col-12 text-center">#}
-                {#                            <h2 id="monarch_core">Эволюция ядра</h2>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {##}
-                {#                    <div class="row align-items-center justify-content-between">#}
-                {#                        <div class="col-12">#}
-                {#                            <p>{{ titan.additional_info|linebreaks }}</p>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                {% endif %}#}
+                {% if titan.name == 'Монарх' %}
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 id="monarch_core">Эволюция ядра</h2>
+                        </div>
+                    </div>
+
+                    {% for stage in core_stages %}
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-12">
+                                <p>{{ stage.descr }}</p>
+                            </div>
+                            {% for evolution in stage.upgrades.all %}
+                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                    <p>{{ evolution.content }}</p>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 test">
+                                    <img src="{{ evolution.image.url }}" alt="bruh" class="img-fluid">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
                 <!-- ----------------------Strategy------------------ -->
 

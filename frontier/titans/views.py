@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, DetailView
 from Frontier.common.views import TitleMixin
-from titans.models import SecondGenTitanModel, FirstGenTitanModel, ChapterModel
+from titans.models import SecondGenTitanModel, FirstGenTitanModel, ChapterModel, MonarchCoreStageModel
 
 
 class IndexView(TitleMixin, TemplateView):
@@ -28,4 +28,5 @@ class TitanModelView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = f'TF2: ' + context['titan'].name
+        context['core_stages'] = MonarchCoreStageModel.objects.all()
         return context
