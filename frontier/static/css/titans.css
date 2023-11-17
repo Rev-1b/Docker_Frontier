@@ -12,13 +12,6 @@ h2 {
     border-bottom: 1px solid aliceblue;
 }
 
-/* .menu-btn{
-    color: aliceblue;
-    font-size: 30px;
-    position: fixed;
-    right: 0;
-} */
-
 /* --------------------Offcanfas----------------------- */
 
 .menu-btn {
@@ -26,7 +19,8 @@ h2 {
     font-size: 40px;
     border-radius: 5px 0 0 0;
     position: fixed;
-    right: 0;
+    bottom: 50%;
+    left: 0;
 }
 
 .offcanvas-obs {
@@ -39,14 +33,16 @@ h2 {
 
 .nav-obs {
     --bs-nav-link-color: aliceblue;
-    --bs-nav-link-hover-color: rgb(255, 255, 255);
-    --bs-nav-link-disabled-color: rgb(255, 255, 255);
+    --bs-nav-link-hover-color: aliceblue;
+    --bs-nav-link-disabled-color: aliceblue;
     --bs-nav-pills-link-active-bg: aliceblue;
     --bs-nav-pills-link-active-color: rgba(3, 3, 3, 0.8);
-    font-size: 13px;
+    --bs-nav-pills-link-hover-color: black;
+    font-size: 12px;
 
     padding: 0;
 }
+
 
 .obs-link {
     display: inline;
@@ -56,13 +52,19 @@ h2 {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
-.obs-link:active{
+.obs-link:active {
     background-color: beige;
 }
 
-.obs-link:hover {
-    border-right: 2px solid aliceblue;
+.nav > a:focus, .nav > a:hover {
+    background-color: beige;
+    color: black;
 }
+
+
+/*.obs-link:hover {*/
+/*    border-right: 2px solid aliceblue;*/
+/*}*/
 
 /* ---------------------Navbar----------------------- */
 
@@ -133,4 +135,9 @@ footer {
     .content {
         width: 100%;
     }
+}
+
+.nav > a:focus, .nav > a:hover {
+    background-color: beige;
+    color: black;
 }

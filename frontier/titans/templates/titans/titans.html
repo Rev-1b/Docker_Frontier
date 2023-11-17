@@ -10,8 +10,8 @@
 
         <!--------------------------- Offcanvas (side navigation) --------------->
 
-        <button class="btn menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-                aria-controls="offcanvasScrolling">
+        <button id="open-offvanvas-button" class="btn menu-btn" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="icon-chart-line icon"></i>
         </button>
 
@@ -19,7 +19,8 @@
              tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button id="close-offvanvas-button" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
@@ -31,7 +32,7 @@
                             <a class="nav-link obs-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>
                             {% for new_titan in old_titan.children.all %}
                                 <a class="nav-link obs-link ms-3 my-1"
-                                   href="#{{ new_titan.slug }}">{{ new_titan.name }}</a>
+                                   href="#{{ new_titan.slug }}">- {{ new_titan.name }}</a>
                             {% endfor %}
                         {% endfor %}
                     </nav>
@@ -39,7 +40,7 @@
             </div>
         </div>
 
-            <!--------------------------- Content Section ------------------------>
+        <!--------------------------- Content Section ------------------------>
 
         <div class="container content text-shadow">
             <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
@@ -128,7 +129,7 @@
         </div>
     </section>
 
-            <!--------------------------- Footer section --------------------------->
+    <!--------------------------- Footer section --------------------------->
 
     <footer>
         <div class="container">
@@ -145,7 +146,7 @@
 
 {% block additional_scripts %}
     <script>
-        var nav = document.querySelector('nav');
+        const nav = document.querySelector('nav');
         window.addEventListener('scroll', function () {
             if (window.pageYOffset > 100) {
                 nav.classList.add('transparent-nav');
@@ -153,5 +154,17 @@
                 nav.classList.remove('transparent-nav');
             }
         });
+
+        const openButton = document.getElementById("open-offvanvas-button");
+        const closeButton = document.getElementById("close-offvanvas-button");
+
+        openButton.addEventListener('click', function () {
+            openButton.style.visibility = 'hidden';
+        });
+
+        closeButton.addEventListener('click', function () {
+            openButton.style.visibility = 'visible';
+        });
+
     </script>
 {% endblock %}
