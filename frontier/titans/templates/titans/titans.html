@@ -15,7 +15,7 @@
             </button>
         </div>
 
-        <div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
+        <div class="show offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
              tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>
@@ -148,6 +148,7 @@
     <script>
         const openButton = document.getElementById("open-offvanvas-button");
         const closeButton = document.getElementById("close-offvanvas-button");
+        openButton.style.visibility = 'hidden';
 
         openButton.addEventListener('click', function () {
             openButton.style.visibility = 'hidden';

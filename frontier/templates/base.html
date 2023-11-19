@@ -14,9 +14,12 @@
 </head>
 
 <body style="background-color: rgb(50, 50, 50);">
-<nav class="navbar fixed-top navbar-expand-sm navbar-dark p-md-3 transparent-nav">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3 transparent-nav">
     <div class="container">
-
+        <button id="open-offvanvas-button" class="btn" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <span class="temp2 white-shadow">Навигация</span>
+        </button>
 
         <a class="navbar-brand" href="{% url 'index' %}">
             <img src="{% static 'img/Titanfan2-logo.png' %}" alt="Logo" width="30" height="26"

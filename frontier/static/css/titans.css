@@ -20,6 +20,10 @@ p {
     text-indent: 30px;
 }
 
+.navbar-brand {
+    position: fixed;
+    left: 43%;
+}
 /* --------------------Offcanfas----------------------- */
 
 .open-btn {
