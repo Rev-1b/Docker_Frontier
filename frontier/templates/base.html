@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'img/Titanfan2-logo.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/fontello.css' %}">
     {% block css %}{% endblock %}
     <title>{{ title }}</title>
 </head>
@@ -17,6 +16,8 @@
 <body style="background-color: rgb(50, 50, 50);">
 <nav class="navbar fixed-top navbar-expand-sm navbar-dark p-md-3 transparent-nav">
     <div class="container">
+
+
         <a class="navbar-brand" href="{% url 'index' %}">
             <img src="{% static 'img/Titanfan2-logo.png' %}" alt="Logo" width="30" height="26"
                  class="d-inline-block align-text-top">
@@ -30,14 +31,12 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="{% url 'titans' %}">Titans</a>
-                <a class="nav-link" href="#">Pilots</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'titans' %}">Титаны</a>
+                <a class="nav-link active" href="#">Пилоты</a>
 
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Menu
-                    </a>
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">Дополнительно</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="admin/">Admin</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>

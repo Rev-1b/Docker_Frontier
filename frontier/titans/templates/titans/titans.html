@@ -9,29 +9,29 @@
     <section>
 
         <!--------------------------- Offcanvas (side navigation) --------------->
-
-        <button id="open-offvanvas-button" class="btn menu-btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <i class="icon-chart-line icon"></i>
-        </button>
+        <div class="open-btn">
+            <button id="open-offvanvas-button" class="btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            </button>
+        </div>
 
         <div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
              tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>
-                <button id="close-offvanvas-button" type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                <button id="close-offvanvas-button" type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
                     <nav class="nav nav-pills nav-obs flex-column">
                         {% for chapter in chapters %}
-                            <a class="nav-link obs-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
+                            <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
                         {% endfor %}
                         {% for old_titan in old_titans %}
-                            <a class="nav-link obs-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>
+                            <a class="nav-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>
                             {% for new_titan in old_titan.children.all %}
-                                <a class="nav-link obs-link ms-3 my-1"
+                                <a class="nav-link ms-3 my-1"
                                    href="#{{ new_titan.slug }}">- {{ new_titan.name }}</a>
                             {% endfor %}
                         {% endfor %}
@@ -73,14 +73,14 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <p>{{ block.content }}</p>
                                 </div>
-                                <div class="col-lg-6 col-sm-12">
+                                <div class="col-lg-6 col-sm-12 video-area">
                                     <iframe width="auto" height="auto"
                                             src="{{ block.video_link }}"
                                             title="YouTube video player"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
                                     </iframe>
-                                    <h6>{{ block.image_or_video_descr }}</h6>
+                                    <h6>{{ block.media_descr }}</h6>
                                 </div>
                             </div>
                         {% endif %}
@@ -146,15 +146,6 @@
 
 {% block additional_scripts %}
     <script>
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset > 100) {
-                nav.classList.add('transparent-nav');
-            } else {
-                nav.classList.remove('transparent-nav');
-            }
-        });
-
         const openButton = document.getElementById("open-offvanvas-button");
         const closeButton = document.getElementById("close-offvanvas-button");
 
