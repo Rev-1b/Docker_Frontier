@@ -14,40 +14,59 @@
 </head>
 
 <body style="background-color: rgb(50, 50, 50);">
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3 transparent-nav">
-    <div class="container-fluid">
+<nav class="navbar fixed-top navbar-dark p-md-3 transparent-nav">
+    <div class="container">
+
+        {#---------------------------Left Offcanvas Button ------------------------#}
         <button id="open-offvanvas-button" class="btn" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <img src="{% static 'img/Content-White.png' %}" alt="Logo" width="30" height="30"
                  class="d-inline-block">
         </button>
 
+        {#-----------------------------------TF2 Logo-------------------------#}
         <a class="navbar-brand" href="{% url 'index' %}">
             <img src="{% static 'img/Titanfan2-logo.png' %}" alt="Logo" width="40" height="40"
                  class="d-inline-block align-text-top">
             <span class="ps-1">Titan Fun 2</span>
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        {#----------------------Right Offcanvas Button(Menu toggler)----------------------#}
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="{% url 'titans' %}">Титаны</a>
-                <a class="nav-link active" href="#">Пилоты</a>
-
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">Дополнительно</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="admin/">Admin</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-
-                </div>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" data-bs-scroll="true"
+             data-bs-backdrop="false"
+             aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'titans' %}">Титаны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Пилоты</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">Дополнительно
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="admin/">Admin</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

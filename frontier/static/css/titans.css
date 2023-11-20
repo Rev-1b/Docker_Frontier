@@ -20,12 +20,6 @@ h2, h6 {
     text-indent: 30px;
 }
 
-/*.navbar-brand {*/
-/*    position: fixed;*/
-/*    left: 43%;*/
-/*    top: 2%;*/
-/*}*/
-
 /* --------------------Offcanfas----------------------- */
 
 .offcanvas-btn-image {
@@ -113,11 +107,6 @@ h2, h6 {
 
     h6 {
         font-size: 14px;
-    }
-
-    .navbar-brand {
-        left: 30%;
-        top: 1%
     }
 
     .content {
