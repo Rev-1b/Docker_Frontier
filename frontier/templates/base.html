@@ -8,20 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'img/Titanfan2-logo.png' %}" type="image/x-icon">
     {% block css %}{% endblock %}
     <title>{{ title }}</title>
 </head>
 
 <body style="background-color: rgb(50, 50, 50);">
+
+{#---------------------------------------------- NavBar Section ------------------------------------------------------#}
 <nav class="navbar fixed-top navbar-dark p-md-3 transparent-nav">
     <div class="container">
 
         {#---------------------------Left Offcanvas Button ------------------------#}
-        <button id="open-offvanvas-button" class="btn" type="button" data-bs-toggle="offcanvas"
+        <button id="open-offvanvas-button" class="navbar-toggler navbar-inverse" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-            <img src="{% static 'img/Content-White.png' %}" alt="Logo" width="30" height="30"
-                 class="d-inline-block">
+            <span>Содержание</span>
         </button>
 
         {#-----------------------------------TF2 Logo-------------------------#}
@@ -34,43 +36,64 @@
         {#----------------------Right Offcanvas Button(Menu toggler)----------------------#}
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
                 aria-controls="offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
+            <span>Меню</span>
         </button>
-
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" data-bs-scroll="true"
-             data-bs-backdrop="false"
-             aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'titans' %}">Титаны</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Пилоты</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Дополнительно
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="admin/">Admin</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 </nav>
+
+
+{#--------------------------------------------- Offcanvas Section ----------------------------------------------------#}
+
+{#------------------------------------------ Left Offcanvas(Content) -------------------------------------------------#}
+<div class="show offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
+     tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>
+        <button id="close-offvanvas-button" type="button" class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
+            {% block left_offcanvas %}{% endblock %}
+        </nav>
+    </div>
+</div>
+
+{#-------------------------------------------- Right Offcanvas(Menu) -------------------------------------------------#}
+<div class="offcanvas offcanvas-end offcanvas-obs" tabindex="-1" id="offcanvasDarkNavbar" data-bs-scroll="true"
+     data-bs-backdrop="false"
+     aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'titans' %}">Титаны</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Пилоты</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">Дополнительно
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="admin/">Admin</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 {% block content %}{% endblock %}
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 {% block additional_scripts %}{% endblock %}

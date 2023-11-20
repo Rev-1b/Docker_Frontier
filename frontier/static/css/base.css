@@ -4,3 +4,15 @@
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0.01) 99%, rgba(255, 255, 255, 0) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00ffffff', GradientType=0);
 }
+
+.offcanvas-obs {
+    color: aliceblue;
+    background-color: rgba(51, 51, 51, 0.45);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    --bs-offcanvas-width: 20%;
+}
+
+.navbar-toggler {
+    color: aliceblue;
+}
