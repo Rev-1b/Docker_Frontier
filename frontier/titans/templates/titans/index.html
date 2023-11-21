@@ -24,3 +24,9 @@
         </div>
     </div>
 {% endblock %}
+{% block additional_scripts %}
+    <script>
+        const openButton = document.getElementById("open-offvanvas-button");
+        openButton.style.visibility = 'hidden';
+    </script>
+{% endblock %}

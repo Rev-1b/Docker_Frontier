@@ -4,39 +4,25 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/titan-model.css' %}">
 {% endblock %}
+
+{% block left_offcanvas %}
+    <nav class="nav nav-pills nav-obs flex-column">
+        <a class="nav-link obs-link" href="#info">Описание</a>
+        <a class="nav-link obs-link" href="#weapon">Оборудование и вооружение</a>
+        {% for weapon in titan.weapon.all|dictsort:'id' %}
+            <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
+        {% endfor %}
+        <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
+        {% if titan.name == 'Монарх' %}
+            <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
+        {% endif %}
+        <a class="nav-link obs-link" href="#strategy">Стратегия</a>
+    </nav>
+{% endblock %}
+
 {% block content %}
 
     <!-- --------------------------Offcanvas (side navigation)------------------------ -->
-
-    <button id="open-offvanvas-button" class="btn menu-btn" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-        <i class="icon-chart-line icon"></i>
-    </button>
-
-    <div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true" data-bs-backdrop="false"
-         tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">{{ titan.name }}</h5>
-            <button id="close-offvanvas-button" type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <nav id="navbar-obs" class="h-100 flex-column align-items-stretch">
-                <nav class="nav nav-pills nav-obs flex-column">
-                    <a class="nav-link obs-link" href="#info">Описание</a>
-                    <a class="nav-link obs-link" href="#weapon">Оборудование и вооружение</a>
-                    {% for weapon in titan.weapon.all|dictsort:'id' %}
-                        <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
-                    {% endfor %}
-                    <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
-                    {% if titan.name == 'Монарх' %}
-                        <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
-                    {% endif %}
-                    <a class="nav-link obs-link" href="#strategy">Стратегия</a>
-                </nav>
-            </nav>
-        </div>
-    </div>
 
     <section>
         <div class="container content text-shadow white-shadow">
@@ -52,8 +38,8 @@
                 </div>
 
                 <div class="row text-center">
-                    <div class="col-12">
-                        <iframe width="560" height="315"
+                    <div class="col-12 video-area">
+                        <iframe width="auto" height="auto"
                                 src="{{ titan.video_link }}"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -153,41 +139,7 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-6">
-                    <h4>
-
-                    </h4>
-                </div>
-            </div>
-        </div>
-    </footer>
-{% endblock %}
+    {% include 'footer.html' %}
 
 
-{% block additional_scripts %}
-    <script>
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset > 100) {
-                nav.classList.add('transparent-nav');
-            } else {
-                nav.classList.remove('transparent-nav');
-            }
-        });
-
-        const openButton = document.getElementById("open-offvanvas-button");
-        const closeButton = document.getElementById("close-offvanvas-button");
-
-        openButton.addEventListener('click', function () {
-            openButton.style.visibility = 'hidden';
-        });
-
-        closeButton.addEventListener('click', function () {
-            openButton.style.visibility = 'visible';
-        });
-
-    </script>
 {% endblock %}

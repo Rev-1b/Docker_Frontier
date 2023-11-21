@@ -1,14 +1,15 @@
 from django.views.generic import TemplateView, DetailView
-from Frontier.common.views import TitleMixin
+from Frontier.common.views import TitleOffcanvasMixin
 from titans.models import SecondGenTitanModel, FirstGenTitanModel, ChapterModel, MonarchCoreStageModel
 
 
-class IndexView(TitleMixin, TemplateView):
+class IndexView(TitleOffcanvasMixin, TemplateView):
     template_name = 'titans/index.html'
     title = 'TF2: Main Page'
+    show_offcanvas = False
 
 
-class TitansView(TitleMixin, TemplateView):
+class TitansView(TitleOffcanvasMixin, TemplateView):
     template_name = 'titans/titans.html'
     title = 'TF2: Титаны'
 
@@ -19,7 +20,7 @@ class TitansView(TitleMixin, TemplateView):
         return context
 
 
-class TitanModelView(DetailView):
+class TitanModelView(TitleOffcanvasMixin, DetailView):
     model = SecondGenTitanModel
     template_name = 'titans/titan-model.html'
     slug_url_kwarg = 'titan_slug'
