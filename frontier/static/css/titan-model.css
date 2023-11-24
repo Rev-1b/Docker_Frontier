@@ -23,7 +23,6 @@ body {
 
 /* ------------------Media----------------------- */
 
-
 @media (max-width: 576px) {
     h2 {
         font-size: 30px;
@@ -58,5 +57,4 @@ body {
     .nav-obs {
         font-size: 18px;
     }
-
 }
