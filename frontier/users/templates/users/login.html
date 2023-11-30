@@ -11,16 +11,33 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="form-error">{{ form.non_field_errors }}</div>
-            {% for f in form %}
-                <p><label class="" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
-                <div class="form-error">{{ f.errors }}</div>
-            {% endfor %}
-            <div class="btn-animate">
-                <a class="btn-signin">Sign in</a>
+
+            <div class="input-box">{{ form.username }}<i class="fa-solid fa-user"></i></div>
+            <div class="form-error">{{ form.username.errors }}</div>
+
+            <div class="input-box">{{ form.password }}<i class="fa-solid fa-lock"></i></div>
+            <div class="form-error">{{ form.password.errors }}</div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Запомнить меня</label>
+                <a href="#">Забыли пароль?</a>
             </div>
+            <button type="submit" class="btn1">Войти</button>
+            <div class="register-link">Еще нет Аккаунта? <a href="#">Зарегистрироваться</a></div>
         </form>
-        aSJKHDGAWSHDGJHKSGDHJKGashjkdgkjahgde
     </div>
 {% endblock %}
 
-{% block additional_scripts %}{% endblock %}
+
+
+{#<form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#    <div class="form-error">{{ form.non_field_errors }}</div>#}
+{#    {% for f in form %}#}
+{#        <p><label class="" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>#}
+{#        <div class="form-error">{{ f.errors }}</div>#}
+{#    {% endfor %}#}
+{#    <div class="btn-animate">#}
+{#        <a class="btn-signin">Sign in</a>#}
+{#    </div>#}
+{#</form>#}
