@@ -23,7 +23,8 @@
                 <a href="#">Забыли пароль?</a>
             </div>
             <button type="submit" class="btn1">Войти</button>
-            <div class="register-link">Еще нет Аккаунта? <a href="#">Зарегистрироваться</a></div>
+            <div class="register-link">Еще нет Аккаунта? <a href="{% url 'users:register' %}">++Зарегистрироваться</a>
+            </div>
         </form>
     </div>
 {% endblock %}

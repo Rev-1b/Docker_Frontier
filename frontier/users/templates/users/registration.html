@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <h1>Авторизация</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+
+            <div class="input-box">{{ form.username }}<i class="fa-solid fa-user"></i></div>
+            <div class="form-error">{{ form.username.errors }}</div>
+
+            <div class="input-box">{{ form.password }}<i class="fa-solid fa-lock"></i></div>
+            <div class="form-error">{{ form.password.errors }}</div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Запомнить меня</label>
+                <a href="#">Забыли пароль?</a>
+            </div>
+            <button type="submit" class="btn1">Войти</button>
+            <div class="register-link">Еще нет Аккаунта? <a href="#">Зарегистрироваться</a></div>
+        </form>
+    </div>
+{% endblock %}
