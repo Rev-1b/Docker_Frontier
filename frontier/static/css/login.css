@@ -10,7 +10,6 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /*background: linear-gradient(135deg, rgba(88, 31, 244, 1) 0%, rgba(88, 31, 244, 1) 2%, rgba(233, 60, 236, 1) 100%);*/
     background-image: url('../img/login-backimage.jpg');
     background-size: cover;
     background-attachment: fixed;

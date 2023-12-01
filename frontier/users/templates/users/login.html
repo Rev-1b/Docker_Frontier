@@ -23,22 +23,8 @@
                 <a href="#">Забыли пароль?</a>
             </div>
             <button type="submit" class="btn1">Войти</button>
-            <div class="register-link">Еще нет Аккаунта? <a href="{% url 'users:register' %}">++Зарегистрироваться</a>
+            <div class="register-link">Еще нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a>
             </div>
         </form>
     </div>
 {% endblock %}
-
-
-
-{#<form action="" method="post">#}
-{#    {% csrf_token %}#}
-{#    <div class="form-error">{{ form.non_field_errors }}</div>#}
-{#    {% for f in form %}#}
-{#        <p><label class="" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>#}
-{#        <div class="form-error">{{ f.errors }}</div>#}
-{#    {% endfor %}#}
-{#    <div class="btn-animate">#}
-{#        <a class="btn-signin">Sign in</a>#}
-{#    </div>#}
-{#</form>#}

@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from users.forms import UserLoginForm, UserCreationForm
+from users.forms import UserLoginForm, CreateUserForm
 
 
 class UserLoginView(LoginView):
@@ -15,7 +15,7 @@ class UserLoginView(LoginView):
 
 
 class CreateUserView(CreateView):
-    form_class = UserCreationForm
+    form_class = CreateUserForm
     template_name = 'users/registration.html'
     extra_context = {'title': 'Регистрация'}
 

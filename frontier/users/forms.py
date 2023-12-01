@@ -17,7 +17,7 @@ class UserLoginForm(AuthenticationForm):
     ))
 
 
-class UserForm(UserCreationForm):
+class CreateUserForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(
         attrs={
             'type': 'username',
