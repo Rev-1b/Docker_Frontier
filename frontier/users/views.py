@@ -1,12 +1,24 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView
 
-from users.forms import UserLoginForm
+from users.forms import UserLoginForm, UserCreationForm
 
 
 class UserLoginView(LoginView):
     form_class = UserLoginForm
     template_name = 'users/login.html'
+    extra_context = {'title': 'Авторизация'}
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
+class CreateUserView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'users/registration.html'
+    extra_context = {'title': 'Регистрация'}
+
+    def get_success_url(self):
+        return reverse_lazy('users:login')

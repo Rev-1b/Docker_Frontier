@@ -7,12 +7,12 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(
         attrs={
             'type': 'username',
-            'placeholder': 'Username'
+            'placeholder': 'Имя пользователя'
         }
     ))
     password = forms.CharField(max_length=16, widget=forms.PasswordInput(
         attrs={
-            'placeholder': 'Password'
+            'placeholder': 'Пароль'
         }
     ))
 
@@ -21,19 +21,19 @@ class UserForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(
         attrs={
             'type': 'username',
-            'placeholder': 'Username'
+            'placeholder': 'Имя пользователя'
         }
     ))
     first_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'type': 'first_name',
-            'placeholder': 'First Name'
+            'placeholder': 'Имя'
         }
     ))
     last_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'type': 'last_name',
-            'placeholder': 'Last Name'
+            'placeholder': 'Фамилия'
         }
     ))
     email = forms.EmailField(widget=forms.TextInput(
@@ -44,12 +44,12 @@ class UserForm(UserCreationForm):
     ))
     password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(
         attrs={
-            'placeholder': 'Password'
+            'placeholder': 'Пароль'
         }
     ))
     password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(
         attrs={
-            'placeholder': 'Repeat Password'
+            'placeholder': 'Повтор пароля'
         }
     ))
 
