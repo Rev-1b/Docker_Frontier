@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/registration.css' %}" rel="stylesheet">
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center obs-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            <div class="row wrapper">
+
+                <div class="col-12">
+                    <h1>Ваш профиль</h1>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="input-box">{{ form.username }}<i class="fa-solid fa-user"></i></div>
+                    <div class="form-error">{{ form.username.errors }}</div>
+
+                    <div class="input-box">{{ form.first_name }}<i class="fa-solid fa-user"></i></div>
+                    <div class="form-error">{{ form.first_name.errors }}</div>
+                </div>
+
+                <div class="col-lg-6 col-sm-12">
+                    <div class="input-box">{{ form.email }}<i class="fa-solid fa-envelope"></i></div>
+                    <div class="form-error">{{ form.email.errors }}</div>
+
+                    <div class="input-box">{{ form.last_name }}<i class="fa-solid fa-user"></i></div>
+                    <div class="form-error">{{ form.last_name.errors }}</div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn1">Подтвердить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
