@@ -146,3 +146,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'users.authenticate.EmailAuthenticateBackend',
 ]
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

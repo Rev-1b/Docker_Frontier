@@ -20,7 +20,7 @@
 
             <div class="remember-forgot">
                 <label><input type="checkbox"> Запомнить меня</label>
-                <a href="#">Забыли пароль?</a>
+                <a href="{% url 'users:password_reset' %}">Забыли пароль?</a>
             </div>
             <button type="submit" class="btn1">Войти</button>
             <div class="register-link">Еще нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a>
