@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordCha
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from users.forms import UserLoginForm, CreateUserForm, UserProfileForm, NewPasswordChangeForm
+from users.forms import *
 
 
 class UserLoginView(LoginView):
@@ -59,6 +59,7 @@ class NewPasswordResetDoneView(PasswordResetDoneView):
 
 
 class NewPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = NewSetPasswordForm
     template_name = 'users/password_reset_confirm.html'
     success_url = reverse_lazy('users:password_reset_complete')
 
