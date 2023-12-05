@@ -10,19 +10,13 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('../img/login-backimage.jpg');
     background-size: cover;
     background-attachment: fixed;
     position: relative;
 }
 
-.obs-color {
-    background: linear-gradient(135deg, rgba(88, 31, 244, 1) 0%, rgba(88, 31, 244, 1) 2%, rgba(233, 60, 236, 1) 100%);
-    color: #0a53be;
-}
-
 .wrapper {
-    width: 640px;
+    width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -68,27 +62,6 @@ body {
     font-size: 20px;
 }
 
-.wrapper .remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin: -15px 0 15px;
-}
-
-.remember-forgot label input {
-    accent-color: aliceblue;
-    margin-right: 3px;
-}
-
-.remember-forgot a {
-    color: aliceblue;
-    text-decoration: none;
-}
-
-.remember-forgot a:hover {
-    text-decoration: underline;
-}
-
 .wrapper .btn1 {
     width: 100%;
     height: 45px;
@@ -112,18 +85,3 @@ body {
     box-shadow: 0 0 5px aliceblue, 0 0 20px aliceblue;
 }
 
-.wrapper .register-link {
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
-}
-
-.register-link a {
-    color: aliceblue;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}

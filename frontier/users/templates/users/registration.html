@@ -3,7 +3,8 @@
 
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users/basic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users/registration.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -41,7 +42,7 @@
 
                 <div class="col-12">
                     <button type="submit" class="btn1">Зарегистрироваться</button>
-                    <div class="register-link">Уже есть аккаунт? <a
+                    <div class="login-link">Уже есть аккаунт? <a
                             href="{% url 'users:login' %}">Войти</a>
                     </div>
                 </div>

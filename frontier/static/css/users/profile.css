@@ -1,0 +1,23 @@
+body {
+    background-image: url('../../img/Profile-background.jpeg');
+}
+
+.wrapper {
+    width: 720px;
+}
+
+.wrapper .change-pass-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.change-pass-link a {
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.change-pass-link a:hover {
+    text-decoration: underline;
+}

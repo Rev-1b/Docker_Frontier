@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block css %}
-    <link href="{% static 'css/registration.css' %}" rel="stylesheet">
-    <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'css/users/basic.css' %}" rel="stylesheet">
+    <link href="{% static 'css/users/profile.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -33,7 +33,7 @@
                     <div class="form-error">{{ form.last_name.errors }}</div>
                 </div>
 
-                <div class="col-12 register-link">
+                <div class="col-12 change-pass-link">
                     <a href="{% url 'users:password_change' %}">Сменить пароль</a>
                 </div>
 

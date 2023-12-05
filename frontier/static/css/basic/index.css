@@ -12,7 +12,7 @@ html{
 .container-fluid{
     width: 99vw;
     height: 120vh;
-    background-image: url('../img/Epic-prewiew.jpg');
+    background-image: url('../../img/Epic-prewiew.jpg');
     background-size: cover;
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
@@ -112,7 +112,7 @@ h1{
 
 @media (max-width: 576px) {
     .container-fluid{
-        background-image: url('../img/Epic-mobile.jpg');
+        background-image: url('../../img/Epic-mobile.jpg');
         width: 100vw;
         height: 100vh;
         margin-top: 0;
