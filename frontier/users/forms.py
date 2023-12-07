@@ -1,6 +1,12 @@
+import uuid
+from datetime import timedelta
+
 import django.forms as forms
+from django.core.mail import send_mail
+from django.utils.timezone import now
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm, SetPasswordForm
+from users.models import Profile, EmailVerificationModel
 
 
 class UserLoginForm(AuthenticationForm):
@@ -63,8 +69,14 @@ class CreateUserForm(UserCreationForm):
             raise forms.ValidationError('Такой E-mail уже существует')
         return email
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        email_verification = EmailVerificationModel.objects.create(code=uuid.uuid4,
+                                                                   user=user,
+                                                                   expiration_time=now() + timedelta(hours=48))
 
-class UserProfileForm(forms.ModelForm):
+
+class UserProfileMainForm(forms.ModelForm):
     username = forms.CharField(disabled=True, label='Имя пользователя')
     email = forms.EmailField(disabled=True, label='E-mail')
 
@@ -79,6 +91,16 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Введите Имя'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Введите Фамилию'}),
+        }
+
+
+class UserProfileSubForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'photo']
+
+        widgets = {
+            'bio': forms.Textarea(attrs={'placeholder': 'Расскажите о себе'}),
         }
 
 

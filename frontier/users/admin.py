@@ -16,3 +16,11 @@ class ProfileAdmin(admin.ModelAdmin):
         if profile.photo:
             return mark_safe(f"<img src='{profile.photo.url}' width=50>")
         return 'Нет изображения'
+
+
+@admin.register(EmailVerificationModel)
+class EmailVerificationAdmin(admin.ModelAdmin):
+    fields = ['code', 'user', 'create_time', 'expiration_time']
+    list_display = ['code', 'user', 'create_time', 'expiration_time']
+    readonly_fields = ['create_time']
+    search_fields = ['user']
