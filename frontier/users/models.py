@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
+from django.utils.timezone import now
 
 
 class Profile(models.Model):
@@ -38,10 +40,17 @@ class EmailVerificationModel(models.Model):
         return f'Подтверждение почты для пользователя: {self.user.username}'
 
     def send_verification_email(self):
+        address = reverse('users:email_verification', kwargs={'code': self.code, 'email': self.user.email})
+        full_address = settings.DOMAIN_NAME + address
+        subject = f'Подтверждение E-mail для пользователя {self.user.username}'
+        message = f'Для того, чтобы подтвердить свой адрес электронной почты, перейдите по ссылке: {full_address}'
         send_mail(
-            subject='a',
-            message='b',
+            subject=subject,
+            message=message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[self.user.email]
         )
+
+    def is_expired(self):
+        return True if now() >= self.expiration_time else False
 

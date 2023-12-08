@@ -2,10 +2,11 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, \
     PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 
 from users.forms import *
 
@@ -89,3 +90,19 @@ class NewPasswordResetConfirmView(PasswordResetConfirmView):
 
 class NewPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'users/password_reset_complete.html'
+
+
+class EmailVerificationView(TemplateView):
+    extra_context = {'title': 'E-mail подтвержден'}
+    template_name = 'users/verified_email.html'
+
+    def get(self, request, *args, **kwargs):
+        code = kwargs['code']
+        user = get_user_model().objects.get(email=kwargs['email'])
+        email_verifications = EmailVerificationModel.objects.filter(user=user, code=code)
+        if email_verifications.exists() and not email_verifications.first().is_expired():
+            user.profile.is_email_verified = True
+            user.save()
+            return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('index'))

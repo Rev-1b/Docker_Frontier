@@ -70,10 +70,11 @@ class CreateUserForm(UserCreationForm):
         return email
 
     def save(self, commit=True):
-        user = super().save(commit=False)
-        email_verification = EmailVerificationModel.objects.create(code=uuid.uuid4,
-                                                                   user=user,
+        user = super().save(commit=True)
+        email_verification = EmailVerificationModel.objects.create(code=uuid.uuid4(), user=user,
                                                                    expiration_time=now() + timedelta(hours=48))
+        email_verification.send_verification_email()
+        return user
 
 
 class UserProfileMainForm(forms.ModelForm):

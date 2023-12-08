@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/users/basic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users/password_reset_complete.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <h1>E-mail подтвержден!</h1>
+        <div class="buttn1">
+            <a class="link1" href="{% url 'index' %}">Вернуться на главную страницу</a>
+        </div>
+    </div>
+{% endblock %}

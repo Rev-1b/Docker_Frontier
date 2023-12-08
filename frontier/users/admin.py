@@ -6,8 +6,8 @@ from .models import *
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    fields = ['user', ('photo', 'show_photo'), 'bio']
-    list_display = ['user', 'show_photo']
+    fields = ['user', ('photo', 'show_photo'), 'bio', 'is_email_verified']
+    list_display = ['user', 'show_photo', 'is_email_verified']
     readonly_fields = ['show_photo']
     search_fields = ['user']
 
