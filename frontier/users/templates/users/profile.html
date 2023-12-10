@@ -33,9 +33,11 @@
                     <div class="form-error">{{ main_form.last_name.errors }}</div>
                 </div>
 
-                <div class="col-12 change-pass-link">
-                    <a href="{% url 'users:password_change' %}">Сменить пароль</a>
-                </div>
+                {% if not perms.users.social_auth %}
+                    <div class="col-12 change-pass-link">
+                        <a href="{% url 'users:password_change' %}">Сменить пароль</a>
+                    </div>
+                {% endif %}
 
                 <div class="col-12">
                     <button type="submit" class="btn1">Подтвердить</button>

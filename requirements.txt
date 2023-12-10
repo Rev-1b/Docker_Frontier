@@ -3,4 +3,5 @@ Pillow
 psycopg2
 redis
 sqlparse
-
+social-auth-app-django
+django-debug-toolbar

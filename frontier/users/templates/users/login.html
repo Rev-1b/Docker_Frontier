@@ -26,6 +26,12 @@
             <button type="submit" class="btn1">Войти</button>
             <div class="register-link">Еще нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a>
             </div>
+            <div class="col item-social">
+                <a href="{% url "social:begin" "github" %}"><i class="fa-brands fa-github"></i></a>
+                <a href="{% url "social:begin" "google-oauth2" %}"><i class="fa-brands fa-telegram"></i></a>
+                <a href="{% url "social:begin" "google-oauth2" %}"><i class="fa-brands fa-instagram"></i></a>
+                <a href="{% url "social:begin" "google-oauth2" %}"><i class="fa-brands fa-google"></i></a>
+            </div>
         </form>
     </div>
 {% endblock %}
