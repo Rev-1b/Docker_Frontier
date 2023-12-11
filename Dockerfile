@@ -7,7 +7,9 @@ COPY frontier /frontier
 WORKDIR /frontier
 EXPOSE 8000
 
-RUN apk add postgresql-client build-base postgresql-dev
+
+#RUN apt-get update
+#RUN apt-get install postgresql-client build-base postgresql-dev
 
 RUN pip install --no-cache -r /temp/requirements.txt
 

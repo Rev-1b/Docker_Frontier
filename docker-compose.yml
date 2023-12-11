@@ -20,6 +20,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
+      - redis
 
   db:
     image: postgres
@@ -33,6 +34,11 @@ services:
 
     volumes:
       - D:\postgres_data\frontier_db:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    hostname: redis
+    restart: always
 
 
 

@@ -2,6 +2,8 @@ Django
 Pillow
 psycopg2
 redis
+hiredis
 sqlparse
 social-auth-app-django
 django-debug-toolbar
+celery
