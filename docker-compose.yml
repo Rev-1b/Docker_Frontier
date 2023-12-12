@@ -5,7 +5,6 @@ services:
     container_name: frontier_app
     ports:
       - 8000:8000
-      - 587:587
     env_file:
       - .env
     environment:

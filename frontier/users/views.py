@@ -9,6 +9,7 @@ from django.views import View
 from django.views.generic import CreateView, TemplateView
 
 from users.forms import *
+from users.models import EmailVerificationModel
 
 
 class UserLoginView(LoginView):
