@@ -40,5 +40,20 @@ services:
     hostname: redis
     restart: always
 
+  worker:
+    build:
+      context: .
+    hostname: worker
+    entrypoint: celery
+    command: celery -A Frontier worker --loglevel=info
+    volumes:
+      - ./frontier:/frontier
+    links:
+      - redis
+    depends_on:
+      - web-app
+      - redis
+
+
 
 
