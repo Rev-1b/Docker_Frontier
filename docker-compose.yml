@@ -44,7 +44,15 @@ services:
     build:
       context: .
     hostname: worker
-    entrypoint: celery
+    ports:
+      - 587:587
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=db
+      - DB_NAME=frontier
+      - DB_USER=frontier_user
+      - DB_PASSWORD=qwerty2F
     command: celery -A Frontier worker --loglevel=info
     volumes:
       - ./frontier:/frontier
