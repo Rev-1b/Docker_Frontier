@@ -9,8 +9,8 @@
 {% block content %}
     <div class="wrapper">
         <h1>E-mail подтвержден!</h1>
-        <div class="buttn1">
-            <a class="link1" href="{% url 'index' %}">Вернуться на главную страницу</a>
-        </div>
+        <form method="get" action="{% url 'index' %}">
+            <button class="btn1" type="submit">Вернуться на главную страницу</button>
+        </form>
     </div>
 {% endblock %}

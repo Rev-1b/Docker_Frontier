@@ -139,4 +139,29 @@
     margin-bottom: 0;
 }
 
+.logout{
+    background: transparent;
+    color: aliceblue;
+    border: hidden;
+}
 
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 30px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    .offcanvas-obs {
+        --bs-offcanvas-width: 100%;
+        background-color: rgba(51, 51, 51, 1);
+    }
+
+    .nav-obs {
+        font-size: 18px;
+    }
+
+}

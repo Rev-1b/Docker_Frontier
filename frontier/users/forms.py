@@ -1,7 +1,8 @@
 import django.forms as forms
-from users.tasks import send_verification_email
+from users.tasks import send_verification_email, send_reset_mail_task
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm, SetPasswordForm
+from django.contrib.auth.forms import PasswordResetForm as PasswordResetFormCore
 from users.models import Profile
 
 
@@ -90,19 +91,30 @@ class UserProfileMainForm(forms.ModelForm):
 
 
 class UserProfileSubForm(forms.ModelForm):
+    photo = forms.ImageField(widget=forms.FileInput())
+
     class Meta:
         model = Profile
-        fields = ['bio', 'photo']
-
-        widgets = {
-            'bio': forms.Textarea(attrs={'placeholder': 'Расскажите о себе'}),
-        }
+        fields = ['photo']
 
 
 class NewPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Введите старый пароль'}))
     new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Введите новый пароль'}))
     new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
+
+
+class PasswordResetForm(PasswordResetFormCore):
+    email = forms.EmailField(max_length=254, widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+
+    def send_reset_mail(self, subject_template_name, email_template_name, context,
+                        from_email, to_email, html_email_template_name=None):
+        context['user'] = context['user'].id
+
+        send_reset_mail_task.delay(subject_template_name=subject_template_name,
+                                   email_template_name=email_template_name,
+                                   context=context, from_email=from_email, to_email=to_email,
+                                   html_email_template_name=html_email_template_name)
 
 
 class NewSetPasswordForm(SetPasswordForm):

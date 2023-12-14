@@ -94,7 +94,7 @@
                     <a class="nav-link active" href="{% url 'users:profile' %}">Профиль</a>
                     <form method="post" action="{% url 'users:logout' %}">
                         {% csrf_token %}
-                        <button type="submit">Выйти</button>
+                        <button class="logout" type="submit">Выйти</button>
                     </form>
                 </li>
 

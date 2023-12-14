@@ -12,7 +12,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE,
                                 verbose_name='Связанный пользователь')
     bio = models.TextField(max_length=500, blank=True, null=True, verbose_name='О себе')
-    photo = models.ImageField(upload_to='user_images/', blank=True, null=True, verbose_name='Фотография пользователя')
+    photo = models.ImageField(upload_to='user_images/%Y/%m/%d', blank=True, null=True,
+                              verbose_name='Фотография пользователя')
     is_email_verified = models.BooleanField(default=False)
 
     def __str__(self):
@@ -53,4 +54,3 @@ class EmailVerificationModel(models.Model):
 
     def is_expired(self):
         return True if now() >= self.expiration_time else False
-

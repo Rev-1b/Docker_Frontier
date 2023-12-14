@@ -17,6 +17,15 @@
                     <h1>Ваш профиль</h1>
                 </div>
 
+                <div class="col-lg-4 col-sm-12">
+                    <img src="{{ user.profile.photo.url }}" alt="bruh" class="avatar white-shadow">
+                </div>
+
+                <div class="col-lg-8 col-sm-12">
+                    <div>{{ sub_form.photo }}</div>
+                    <div class="form-error">{{ sub_form.photo.errors }}</div>
+                </div>
+
                 <div class="col-lg-6 col-sm-12">
                     <div class="input-box">{{ main_form.username }}<i class="fa-solid fa-user"></i></div>
                     <div class="form-error">{{ main_form.username.errors }}</div>
