@@ -3,7 +3,8 @@ body {
 }
 
 .wrapper {
-    width: 720px;
+    width: auto;
+    max-width: 720px;
 }
 
 .wrapper .change-pass-link {
@@ -28,3 +29,5 @@ body {
     height: 170px;
     object-fit: cover;
 }
+
+

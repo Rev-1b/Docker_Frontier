@@ -16,6 +16,15 @@
     .content h2 {
         margin-top: 20px;
     }
+
+    .nav-obs {
+        font-size: 18px;
+    }
+}
+
+.content p {
+    text-align: justify;
+    text-indent: 30px;
 }
 
 .row {
