@@ -21,11 +21,13 @@
     <div class="container">
 
         {#        ---------------------------Left Offcanvas Button ------------------------#}
+        {% if show_content %}
         <button id="open-offvanvas-button" class="navbar-toggler navbar-inverse" type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <span>Содерж.</span>
         </button>
+        {% endif %}
 
         {#        -----------------------------------TF2 Logo-------------------------#}
         <a class="navbar-brand" href="{% url 'index' %}">
@@ -46,7 +48,7 @@
 {#--------------------------------------------- Offcanvas Section ----------------------------------------------------#}
 
 {#------------------------------------------ Left Offcanvas(Content) -------------------------------------------------#}
-<div class="offcanvas offcanvas-start offcanvas-obs {% if show_offcanvas %} temp2 {% endif %}" data-bs-scroll="true"
+<div class="offcanvas offcanvas-start offcanvas-obs" data-bs-scroll="true"
      data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Содержание</h5>

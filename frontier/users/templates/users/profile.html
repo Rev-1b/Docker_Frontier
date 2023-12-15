@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="container min-vh-100 d-flex justify-content-center align-items-center obs-container">
-        <form action="" method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-error">{{ form.non_field_errors }}</div>
             <div class="row wrapper">
@@ -17,13 +17,21 @@
                     <h1>Ваш профиль</h1>
                 </div>
 
-                <div class="col-lg-4 col-sm-12">
-                    <img src="{{ user.profile.photo.url }}" alt="bruh" class="avatar white-shadow">
+                <div class="col-lg-4 col-sm-12 text-center">
+                    {% if user.profile.photo %}
+                        <img src="{{ user.profile.photo.url }}" alt="bruh" class="avatar white-shadow">
+                    {% else %}
+                        <img src="{% static 'img/default-user.jpg' %}" alt="bruh" class="avatar white-shadow">
+                    {% endif %}
                 </div>
 
-                <div class="col-lg-8 col-sm-12">
-                    <div>{{ sub_form.photo }}</div>
+                <div class="col-lg-8 col-sm-12 justify-content-center align-items-center">
+                    <h6>Выберите изображение, которое станет вашим аватаром!</h6>
+                    <div class="chose-image-div">
+                       <label class="chose-image">Выбрать{{ sub_form.photo }}</label>
+                    </div>
                     <div class="form-error">{{ sub_form.photo.errors }}</div>
+
                 </div>
 
                 <div class="col-lg-6 col-sm-12">

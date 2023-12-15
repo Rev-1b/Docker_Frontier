@@ -7,6 +7,14 @@ body {
     max-width: 720px;
 }
 
+.wrapper h6 {
+    text-align: justify;
+}
+
+.wrapper h1 {
+    margin-bottom: 20px;
+}
+
 .wrapper .change-pass-link {
     font-size: 14.5px;
     text-align: center;
@@ -28,6 +36,40 @@ body {
     width: 170px;
     height: 170px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
+.chose-image {
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 5px 15px;
+    background: gray;
+    border: 2px solid aliceblue;
+    border-radius: 3px;
+}
 
+.chose-image:hover {
+    padding: 7px 18px;
+    transition-duration: 0.1s;
+}
+
+@media (max-width: 576px) {
+    h1 {
+        margin-top: 30px;
+    }
+
+    h6 {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .avatar {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .chose-image-div {
+        text-align: center;
+    }
+
+}

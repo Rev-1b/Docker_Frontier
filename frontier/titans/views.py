@@ -1,17 +1,15 @@
 from django.views.generic import TemplateView, DetailView
-from Frontier.common.views import TitleOffcanvasMixin
 from titans.models import SecondGenTitanModel, FirstGenTitanModel, ChapterModel, MonarchCoreStageModel
 
 
-class IndexView(TitleOffcanvasMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = 'titans/index.html'
-    title = 'TF2: Main Page'
-    show_offcanvas = False
+    extra_context = {'title': 'TF2: Main Page'}
 
 
-class TitansView(TitleOffcanvasMixin, TemplateView):
+class TitansView(TemplateView):
     template_name = 'titans/titans.html'
-    title = 'TF2: Титаны'
+    extra_context = {'title': 'TF2: Титаны', 'show_content': True}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -20,7 +18,7 @@ class TitansView(TitleOffcanvasMixin, TemplateView):
         return context
 
 
-class TitanModelView(TitleOffcanvasMixin, DetailView):
+class TitanModelView(DetailView):
     model = SecondGenTitanModel
     template_name = 'titans/titan-model.html'
     slug_url_kwarg = 'titan_slug'
@@ -30,4 +28,5 @@ class TitanModelView(TitleOffcanvasMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = f'TF2: ' + context['titan'].name
         context['core_stages'] = MonarchCoreStageModel.objects.all()
+        context['show_content'] = True
         return context

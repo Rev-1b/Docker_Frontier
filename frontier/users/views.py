@@ -45,7 +45,7 @@ class ProfileUserView(LoginRequiredMixin, View):
 
     def post(self, request):
         main_form = UserProfileMainForm(request.POST, instance=request.user)
-        sub_form = UserProfileSubForm(request.POST, instance=request.user.profile)
+        sub_form = UserProfileSubForm(request.POST, request.FILES, instance=request.user.profile)
         if main_form.is_valid() and sub_form.is_valid():
             main_form.save()
             sub_form.save()
@@ -62,14 +62,14 @@ class ProfileUserView(LoginRequiredMixin, View):
             messages.error(request, 'Пожалуйста, исправьте ошибки.')
 
 
-class NewPasswordChangeView(PasswordChangeView):
+class NewPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     form_class = NewPasswordChangeForm
     success_url = reverse_lazy('users:password_change_done')
     template_name = 'users/password_change.html'
     extra_context = {'title': 'Изменение пароля'}
 
 
-class NewPasswordChangeDoneView(PasswordChangeDoneView):
+class NewPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
 

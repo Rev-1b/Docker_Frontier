@@ -1,4 +1,6 @@
 import django.forms as forms
+from django.forms import FileInput
+
 from users.tasks import send_verification_email, send_reset_mail_task
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm, SetPasswordForm
@@ -91,7 +93,7 @@ class UserProfileMainForm(forms.ModelForm):
 
 
 class UserProfileSubForm(forms.ModelForm):
-    photo = forms.ImageField(widget=forms.FileInput())
+    photo = forms.ImageField(label='Выберите изображение', widget=forms.FileInput(attrs={'style': 'display: none'}))
 
     class Meta:
         model = Profile
