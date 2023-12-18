@@ -64,3 +64,10 @@ body {
     opacity: 0.9;
 }
 
+.unactive {
+    background: aliceblue;
+}
+
+.unactive:hover {
+    opacity: 0.75;
+}
