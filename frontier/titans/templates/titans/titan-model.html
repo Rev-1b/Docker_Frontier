@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/titans/titan-model.css' %}">
 {% endblock %}
 
-    <!-- --------------------------Offcanvas (side navigation)------------------------ -->
+<!-- --------------------------Offcanvas (side navigation)------------------------ -->
 
 {% block left_offcanvas %}
     <nav class="nav nav-pills nav-obs flex-column">
@@ -40,14 +40,16 @@
                     </div>
                 </div>
 
-                <div class="row text-center video-area">
-                    <div class="col-12">
-                        <iframe width="auto" height="auto"
-                                src="{{ titan.video_link }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
-                        </iframe>
+                <div class="row">
+                    <div class="col-12 ratio ratio-16x9">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                    src="{{ titan.video_link }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
 

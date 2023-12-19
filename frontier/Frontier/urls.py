@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('titans/', include('titans.urls')),
+    path('pilots/', include('pilots.urls')),
     path('users/', include('users.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path("__debug__/", include("debug_toolbar.urls")),

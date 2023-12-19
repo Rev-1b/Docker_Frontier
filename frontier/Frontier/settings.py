@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'social_django',
     'titans',
     'users',
+    'pilots',
 ]
 
 MIDDLEWARE = [
