@@ -9,6 +9,10 @@ from django.utils.timezone import now
 
 
 class Profile(models.Model):
+    class Meta:
+        verbose_name = 'Профили'
+        verbose_name_plural = 'Профиль'
+
     user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE,
                                 verbose_name='Связанный пользователь')
     bio = models.TextField(max_length=500, blank=True, null=True, verbose_name='О себе')
@@ -32,6 +36,10 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class EmailVerificationModel(models.Model):
+    class Meta:
+        verbose_name = 'Записи подтверждения E-mail'
+        verbose_name_plural = 'Запись подтверждения E-mail'
+
     code = models.UUIDField(unique=True, verbose_name='Уникальный код')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='Время создания запроса')
