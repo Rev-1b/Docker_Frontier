@@ -1,0 +1,60 @@
+body {
+    background-image: url('../../img/Pilot-ability-img.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.content {
+    margin-top: 10%;
+    width: 60%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 25px 25px 0 0;
+    padding: 50px;
+    background-color: rgba(51, 51, 51, 0.45);
+    color: aliceblue;
+    text-indent: inherit;
+}
+
+.add-padding {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ------------------Media----------------------- */
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 30px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    .content {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        padding: 50px 0 0 0;
+        background-color: rgba(51, 51, 51, 0.45);
+        color: aliceblue;
+        font-size: 18px;
+    }
+
+    .transparent-nav {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 74%, rgba(0, 0, 0, 0.65) 86%, rgba(0, 0, 0, 0) 100%);
+        font-size: 30px;
+        padding-bottom: 10px;
+    }
+
+    .offcanvas-obs {
+        --bs-offcanvas-width: 100%;
+        background-color: rgba(51, 51, 51, 1);
+    }
+
+    .nav-obs {
+        font-size: 18px;
+    }
+}

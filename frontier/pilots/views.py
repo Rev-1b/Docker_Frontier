@@ -20,3 +20,4 @@ class PilotTacticalView(DetailView):
     template_name = 'pilots/main-ability-page.html'
     slug_url_kwarg = 'pilot_slug'
     extra_context = {'show_content': True}
+    context_object_name = 'pilot'
