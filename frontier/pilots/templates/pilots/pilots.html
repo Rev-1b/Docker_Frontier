@@ -11,12 +11,8 @@
         {% for chapter in chapters %}
             <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
         {% endfor %}
-        {% for old_titan in old_titans %}
-            <a class="nav-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>
-            {% for new_titan in old_titan.children.all %}
-                <a class="nav-link ms-3 my-1"
-                   href="#{{ new_titan.slug }}">- {{ new_titan.name }}</a>
-            {% endfor %}
+        {% for pilot in pilots %}
+            <a class="nav-link" href="#{{ pilot.slug }}">{{ pilot.name }}:</a>
         {% endfor %}
     </nav>
 {% endblock %}
