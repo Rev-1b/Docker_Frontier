@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link href="{% static 'css/basic/content.css' %}" rel="stylesheet">
+	<link href="{% static 'css/pilots/main-ability.css' %}" rel="stylesheet">
+{% endblock %}
+
+<!-- --------------------------Offcanvas (side navigation)------------------------ -->
+
+{% block left_offcanvas %}
+    <nav class="nav nav-pills nav-obs flex-column">
+        <a class="nav-link obs-link" href="#info">Описание</a>
+        <a class="nav-link obs-link" href="#weapon">Оборудование и вооружение</a>
+        {% for weapon in titan.weapon.all|dictsort:'id' %}
+            <a class="nav-link obs-link ms-3 my-1" href="#{{ weapon.slug }}">{{ weapon.name }}"</a>
+        {% endfor %}
+        <a class="nav-link obs-link" href="#additional-modules">Дополнительные комплекты</a>
+        {% if titan.name == 'Монарх' %}
+            <a class="nav-link obs-link" href="#monarch_core">Эволюция ядра</a>
+        {% endif %}
+        <a class="nav-link obs-link" href="#strategy">Стратегия</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+
+    <!-- -------------------------- Content ----------------------- -->
+
+    <section>
+        <div class="container content text-shadow white-shadow">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
+                <div class="row text-center">
+                    <h1>{{ titan.name }}</h1>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h2 id="info">Описание</h2>
+                        <p>{{ titan.full_descr }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ratio ratio-16x9">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                    src="{{ titan.video_link }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="weapon">Оборудование и Вооружение</h2>
+                    </div>
+                </div>
+
+                {% for weapon in titan.weapon.all|dictsort:'id' %}
+                    <div class="row align-items-center justify-content-between">
+                        <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-9 col-md-6 col-sm-12{% endif %}">
+                            <p>{{ weapon.descr }}</p>
+                        </div>
+                        <div class="{% if weapon.weapon_type == 'MW' %}col-12{% else %}col-lg-3 col-md-6 col-sm-12 test{% endif %}">
+                            <img src="{{ weapon.weapon_image.url }}" alt="bruh"
+                                 class="img-fluid {% if weapon.weapon_type == 'MW' %}white-shadow{% endif %}">
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- --------------------------Additional ammunition-------------------------- -->
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="additional-modules">Дополнительные комплекты</h2>
+                    </div>
+                </div>
+
+                {% for kit in titan.kits.all|dictsort:'id' %}
+                    <div class="row align-items-center add-padding">
+                        <div class="col-12">
+                            <h3>{{ kit.name }}</h3>
+                            <p>{{ kit.descr }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- ----------------------Only for Monarch------------------ -->
+
+                {% if titan.name == 'Монарх' %}
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2 id="monarch_core">Эволюция ядра</h2>
+                        </div>
+                    </div>
+
+                    {% for stage in core_stages %}
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-12">
+                                <p>{{ stage.descr }}</p>
+                            </div>
+                            {% for evolution in stage.upgrades.all %}
+                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                    <p>{{ evolution.content }}</p>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 test">
+                                    <img src="{{ evolution.image.url }}" alt="bruh" class="img-fluid">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- ----------------------Strategy------------------ -->
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 id="strategy">Стратегия</h2>
+                    </div>
+                </div>
+
+                {% for strategy_block in titan.strategy.all %}
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-12">
+                            <p>{{ strategy_block.content|linebreaks }}</p>
+                            <br>
+                        </div>
+                        <div class="col-12">
+                            <img src="{{ strategy_block.image.url }}" alt="bruh"
+                                 class="side-img-space white-shadow justify-content-center text-center">
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+
+{% endblock %}

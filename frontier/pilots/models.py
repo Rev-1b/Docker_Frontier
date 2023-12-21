@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from Frontier.common.models import NormalStringMixin
 from titans.models import AbstractContentModel
 
@@ -10,6 +12,9 @@ class PilotModel(NormalStringMixin, models.Model):
 
     def user_directory_path(instance, filename):
         return "{0}/{1}".format(instance.name, filename)
+
+    def get_absolute_url(self):
+        return reverse('tactical', kwargs={'pilot_slug': self.slug})
 
     slug = models.SlugField(max_length=100, unique=True, verbose_name='Слаг')
     name = models.CharField(max_length=100, verbose_name='Название')

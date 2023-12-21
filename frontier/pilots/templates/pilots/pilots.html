@@ -6,20 +6,20 @@
     <link href="{% static 'css/pilots/pilots.css' %}" rel="stylesheet">
 {% endblock %}
 
-{#{% block left_offcanvas %}#}
-{#    <nav class="nav nav-pills nav-obs flex-column">#}
-{#        {% for chapter in chapters %}#}
-{#            <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>#}
-{#        {% endfor %}#}
-{#        {% for old_titan in old_titans %}#}
-{#            <a class="nav-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>#}
-{#            {% for new_titan in old_titan.children.all %}#}
-{#                <a class="nav-link ms-3 my-1"#}
-{#                   href="#{{ new_titan.slug }}">- {{ new_titan.name }}</a>#}
-{#            {% endfor %}#}
-{#        {% endfor %}#}
-{#    </nav>#}
-{#{% endblock %}#}
+{% block left_offcanvas %}
+    <nav class="nav nav-pills nav-obs flex-column">
+        {% for chapter in chapters %}
+            <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
+        {% endfor %}
+        {% for old_titan in old_titans %}
+            <a class="nav-link" href="#{{ old_titan.slug }}">{{ old_titan.name }}:</a>
+            {% for new_titan in old_titan.children.all %}
+                <a class="nav-link ms-3 my-1"
+                   href="#{{ new_titan.slug }}">- {{ new_titan.name }}</a>
+            {% endfor %}
+        {% endfor %}
+    </nav>
+{% endblock %}
 
 
 {% block content %}
@@ -82,37 +82,21 @@
                     </div>
                 {% endfor %}
 
-                <!-- ----------------------------- Titans section -------------------------- -->
+                <!-- ----------------------------- Pilots section -------------------------- -->
 
-                {% for old_titan in old_titans %}
-                    <div class="row">
-                        <div class="col12">
-                            <h2 id="{{ old_titan.slug }}">{{ old_titan.name }}</h2>
-                        </div>
-                    </div>
-
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-lg-8 col-md-6 col-sm-12">
-                            <p>{{ old_titan.mp_descr }}</p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 test">
-                            <img src="{{ old_titan.mp_image.url }}" alt="bruh" class="img-fluid white-shadow">
-                        </div>
-                    </div>
-
-                    {% for new_titan in old_titan.children.all %}
+                {% for pilot in pilots %}
                         <div class="row align-items-center justify-content-between">
-                            <a style="color: aliceblue" href="{{ new_titan.get_absolute_url }}">
-                                <h3 id="{{ new_titan.slug }}">{{ new_titan.name }}</h3></a>
+                            <a style="color: aliceblue" href="{{ pilot.get_absolute_url }}">
+                                <h3 id="{{ pilot.slug }}">{{ pilot.name }}</h3></a>
                             <div class="col-lg-8 col-md-6 col-sm-12">
-                                <p>{{ new_titan.mp_descr }}</p>
+                                <p>{{ pilot.mp_descr }}</p>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 test">
-                                <img src="{{ new_titan.mp_image.url }}" alt="bruh" class="img-fluid white-shadow">
+                                <img src="{{ pilot.mp_logo.url }}" alt="bruh" class="img-fluid white-shadow">
                             </div>
                         </div>
                     {% endfor %}
-                {% endfor %}
+
             </div>
         </div>
     </section>
