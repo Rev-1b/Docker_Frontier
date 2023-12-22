@@ -21,3 +21,8 @@ class PilotTacticalView(DetailView):
     slug_url_kwarg = 'pilot_slug'
     extra_context = {'show_content': True}
     context_object_name = 'pilot'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'TF2: ' + context['pilot'].name
+        return context
