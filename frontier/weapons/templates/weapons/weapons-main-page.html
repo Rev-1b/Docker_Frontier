@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/basic/content.css' %}" rel="stylesheet">
+    <link href="{% static 'css/weapons/weapons-main-page.css' %}" rel="stylesheet">
+{% endblock %}
+
+<!-- --------------------------Offcanvas (side navigation)------------------------ -->
+
+{% block left_offcanvas %}
+    <nav class="nav nav-pills nav-obs flex-column">
+        {% for chapter in chapters %}
+            <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
+        {% endfor %}
+        {% for pilot in pilots %}
+            <a class="nav-link" href="#{{ pilot.slug }}">{{ pilot.name }}:</a>
+        {% endfor %}
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <section>
+
+        <!--------------------------- Content Section ------------------------>
+
+        <div class="container content text-shadow">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-obs" data-bs-smooth-scroll="true" tabindex="0">
+                {% for chapter in chapters %}
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h2 id="{{ chapter.slug }}">{{ chapter.name }}</h2>
+                            <p>
+                                {{ chapter.upper_text }}
+                            </p>
+                        </div>
+                    </div>
+
+                    {% for block in chapter.content.all %}
+                        {% if block.image %}
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-lg-8 col-md-6 col-sm-12">
+                                    <p>{{ block.content }}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 test">
+                                    <img src="{{ block.image.url }}" alt="bruh"
+                                         class="img-fluid white-shadow">
+                                    <h6>{{ block.media_descr }}</h6>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if block.video_link %}
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-md-6 col-sm-12">
+                                    <p>{{ block.content }}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="ratio ratio-16x9">
+                                        <iframe
+                                                src="{{ block.video_link }}"
+                                                title="YouTube video player"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                                style="box-shadow: 0 0 10px aliceblue, 0 0 40px aliceblue;">
+                                        </iframe>
+                                    </div>
+                                    <h6>{{ block.media_descr }}</h6>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <p>
+                                {{ chapter.lower_text }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- ----------------------------- Pilots section -------------------------- -->
+
+                {% for category in categories %}
+                    <div class="row">
+                        <div class="col12">
+                            <h2 id="{{ category.slug }}">{{ category.name }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-12">
+                            <p>{{ category.descr|linebreaks }}</p>
+                        </div>
+                    </div>
+
+                    {% for weapon in category.weapons.all %}
+                        <div class="row align-items-center justify-content-between">
+                            <h3 id="{{ weapon.slug }}">{{ weapon.name }}</h3>
+
+                            {% if weapon.video_link %}
+                                <div class="ratio ratio-16x9">
+                                    <video class="white-shadow" controls="" playsinline="true"
+                                           muted="" loop=""
+                                           src="{{ weapon.video_link }}">
+                                    </video>
+                                </div>
+
+                            {% endif %}
+
+                            <div class="col-12">
+                                <p>{{ weapon.descr|linebreaks }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!--------------------------- Footer section --------------------------->
+
+    {% include 'footer.html' %}
+{% endblock %}

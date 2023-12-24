@@ -46,8 +46,9 @@ class ChapterModel(NormalStringMixin, models.Model):
         verbose_name_plural = 'Главы'
 
     class ChapterType(models.TextChoices):
-        TITAN_PAGE = "TP", gl("Главная страница титанов")
-        PILOT_PAGE = "PP", gl("Главная страница пилотов")
+        TITAN_PAGE = "TP", gl("Главная страница Титанов")
+        PILOT_PAGE = "PP", gl("Главная страница Пилотов")
+        WEAPON_PAGE = "WP", gl("Главная страница Оружия")
         UNDEFINED = "UN", gl("Не определено")
 
     name = models.CharField(max_length=255, default='Empty', verbose_name='Заголовок')
