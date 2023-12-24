@@ -6,7 +6,7 @@ from pilots.models import *
 
 @admin.register(PilotModel)
 class PilotAdmin(admin.ModelAdmin):
-    fields = ['name', 'slug', 'mp_descr', ('mp_logo', 'display_logo'), 'short_descr', 'features']
+    fields = ['name', 'slug', 'mp_descr', ('mp_logo', 'display_logo'), 'video_link',  'short_descr', 'features']
     list_display = ['name', 'mp_descr', 'display_logo']
     readonly_fields = ['display_logo']
     search_fields = ['name']

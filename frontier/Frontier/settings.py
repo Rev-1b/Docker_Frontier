@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'titans',
     'users',
     'pilots',
+    'weapons',
 ]
 
 MIDDLEWARE = [

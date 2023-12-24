@@ -20,6 +20,7 @@ class PilotModel(NormalStringMixin, models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
     mp_descr = models.TextField(blank=True)
     mp_logo = models.ImageField(upload_to=user_directory_path, verbose_name='Логотип')
+    video_link = models.CharField(blank=True, null=True, verbose_name='Ссылка на видео')
     short_descr = models.TextField(blank=True)
     features = models.TextField(blank=True, verbose_name='Особенности')
 
