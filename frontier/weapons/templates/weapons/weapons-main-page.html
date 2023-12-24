@@ -13,8 +13,8 @@
         {% for chapter in chapters %}
             <a class="nav-link" href="#{{ chapter.slug }}">{{ chapter.name }}</a>
         {% endfor %}
-        {% for pilot in pilots %}
-            <a class="nav-link" href="#{{ pilot.slug }}">{{ pilot.name }}:</a>
+        {% for category in categories %}
+            <a class="nav-link" href="#{{ category.slug }}">{{ category.name }}:</a>
         {% endfor %}
     </nav>
 {% endblock %}
