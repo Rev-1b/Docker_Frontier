@@ -168,3 +168,5 @@ class MonarchCoreUpgradeModel(AbstractContentModel):
                               verbose_name='Ссылка на изображение')
     stage = models.ForeignKey(to=MonarchCoreStageModel, on_delete=models.SET_NULL, null=True, blank=True,
                               related_name='upgrades', verbose_name='Связанная стадия')
+
+

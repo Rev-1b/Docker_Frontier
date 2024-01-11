@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   web-app:
     build:
@@ -16,7 +18,7 @@ services:
       - ./frontier:/frontier
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+             gunicorn Frontier.wsgi:application --bind 0.0.0.0:8000"
     depends_on:
       - db
       - redis
@@ -60,6 +62,16 @@ services:
     depends_on:
       - web-app
       - redis
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./frontier/static:/static
+    ports:
+      - 80:80
+    depends_on:
+      - web-app
+
 
 
 

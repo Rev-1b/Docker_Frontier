@@ -7,3 +7,4 @@ sqlparse
 social-auth-app-django
 django-debug-toolbar
 celery
+gunicorn

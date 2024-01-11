@@ -13,8 +13,10 @@ class TitansView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chapters'] = ChapterModel.objects.filter(curr_page=ChapterModel.ChapterType.TITAN_PAGE)
+
         context['old_titans'] = FirstGenTitanModel.objects.all()
+
+        context['chapters'] = ChapterModel.objects.filter(curr_page=ChapterModel.ChapterType.TITAN_PAGE)
         return context
 
 
