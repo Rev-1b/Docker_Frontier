@@ -67,6 +67,7 @@ services:
     build: ./nginx
     volumes:
       - ./frontier/static:/static
+      - ./frontier/media:/media
     ports:
       - 80:80
     depends_on:

@@ -28,13 +28,28 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['176.123.169.4',
+#                  'django',
+#                  ]
+
 ALLOWED_HOSTS = ['*']
+
 # DOMAIN_NAME = 'http://0.0.0.0:8000'
 
 if DEBUG:
-    CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+    CSRF_TRUSTED_ORIGINS = [
+        'http://*',
+        'https://*',
+        'http://django',
+        'https://django'
+    ]
 else:
-    CSRF_TRUSTED_ORIGINS = ['http://*.176.123.169.4', 'https://*.176.123.169.4']
+    CSRF_TRUSTED_ORIGINS = [
+        'http://176.123.169.4',
+        'http://django',
+        'https://176.123.169.4',
+        'https://django'
+    ]
 
 # INTERNAL_IPS = ["127.0.0.1"]
 
@@ -153,8 +168,8 @@ if DEBUG:
     STATICFILES_DIRS = [
         BASE_DIR / 'static'
     ]
-else:
-    STATIC_ROOT = '/static/'
+
+STATIC_ROOT = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
